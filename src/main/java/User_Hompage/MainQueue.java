@@ -10,10 +10,15 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.NoSuchElementException;
 
 public class MainQueue {
     private final PriorityQueue<String> priorityQueue = new PriorityQueue<>();
+    private static final String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
 
     @FXML
     public TextArea outputArea;
@@ -62,16 +67,13 @@ public class MainQueue {
 
     @FXML
     public void handleAddButtonAction() {
-
         String first = firstName_Input.getText();
         String last = lastName_Input.getText();
         String contact = number_Input.getText();
         String reason = choiceBox.getValue();
-        String input = first + " , " + last + " , " + contact + " , "+ reason;
-        priorityQueue.add(input, 1); // Call the method to add the item to the priority queue
-        System.out.println(priorityQueue);
+        String input = first + " , " + last + " , " + contact + " , " + reason;
+        priorityQueue.add(input, 1); // Add the item to the priority queue
         refreshOutput();
-
     }
 
     @FXML
@@ -123,10 +125,6 @@ public class MainQueue {
     choiceBox.setItems(FXCollections.observableArrayList("General Check Up", "Tooth Extraction", "X-Ray", "Consultation"));
     }
 
-    @FXML
-    public void handleVisualizeButtonAction() {
-        outputArea.setText(priorityQueue.toString());
-    }
 
     @FXML
     public void handlePeekButtonAction() {
@@ -140,6 +138,9 @@ public class MainQueue {
 
     @FXML
     public void handleEditButtonAction() {
+        handleLoadFileAction();
+
+        /*
         String input = JOptionPane.showInputDialog(null, "Enter new item:");
         int priority = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter new priority:"));
         try {
@@ -149,10 +150,14 @@ public class MainQueue {
         } catch (NoSuchElementException e) {
             error_message("Priority Queue is empty.");
         }
+
+         */
     }
 
     private void refreshOutput() {
+
         outputArea.setText(priorityQueue.toString());
+
     }
 
     public void error_message(String msg) {
@@ -161,6 +166,34 @@ public class MainQueue {
 
     public TextArea getOutputArea() {
         return outputArea;
+    }
+
+    public void addToPriorityQueue(String item) {
+        priorityQueue.add(item, 1); // Add the item to the priority queue
+        refreshOutput(); // Refresh the outputArea
+    }
+
+    @FXML
+    public void handleLoadFileAction() {
+        File file = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt");
+        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String name = parts[0].trim();
+                    String lastName = parts[1].trim();
+                    String age = parts[2].trim();
+                    String time = parts[3].trim();
+                    String reason = parts[4].trim();
+                    String input = name + " , " + lastName + " , " + age + " , " + time + " , " + reason;
+                    priorityQueue.add(input, 5);
+                }
+            }
+            refreshOutput();
+        } catch (IOException e) {
+            error_message("Error reading the file: " + e.getMessage());
+        }
     }
 
 

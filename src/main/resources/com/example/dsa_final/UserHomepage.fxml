@@ -8,7 +8,7 @@
     <children>
         <AnchorPane prefHeight="200.0" prefWidth="200.0">
             <children>
-                <Button fx:id="UsrHompage_Reservation" layoutX="29.0" layoutY="197.0" mnemonicParsing="false" onAction="#UsrHompage_ReservationBtn" prefHeight="206.0" prefWidth="234.0" text="Book a resevation" />
+                <Button fx:id="UsrHompage_Reservation" layoutX="29.0" layoutY="197.0" mnemonicParsing="false" onAction="#UsrHompage_ReservationBtn" prefHeight="206.0" prefWidth="234.0" text="Book a reservation" />
                 <Button fx:id="UsrHompage_ReservationDtls" layoutX="283.0" layoutY="197.0" mnemonicParsing="false" onAction="#UsrHompage_ReservationDtlsBtn" prefHeight="206.0" prefWidth="234.0" text="Reservation Details" />
                 <Button layoutX="537.0" layoutY="197.0" mnemonicParsing="false" prefHeight="206.0" prefWidth="234.0" text="Announcements" />
             </children>
