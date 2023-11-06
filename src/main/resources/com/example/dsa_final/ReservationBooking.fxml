@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User_Hompage.ReservationBooking">
+    <children>
+        <AnchorPane prefHeight="200.0" prefWidth="200.0">
+            <children>
+                <Label layoutX="342.0" layoutY="81.0" text="Book an Appointment" />
+                <DatePicker fx:id="User_DatePicker" layoutX="285.0" layoutY="119.0" onAction="#User_DatePicker_Action" prefHeight="25.0" prefWidth="229.0" />
+                <ChoiceBox fx:id="DropDownBtn" layoutX="285.0" layoutY="233.0" onDragDetected="#DropDownBtn_Click" prefHeight="25.0" prefWidth="229.0" />
+                <Label layoutX="285.0" layoutY="98.0" text="Date:" />
+                <Label layoutX="285.0" layoutY="215.0" text="Reason:" />
+                <Button fx:id="BookBtn" layoutX="285.0" layoutY="269.0" mnemonicParsing="false" onAction="#BookBtn_Click" prefHeight="25.0" prefWidth="229.0" text="Book now!" />
+                <Button fx:id="NineAmBTN" layoutX="287.0" layoutY="153.0" mnemonicParsing="false" onAction="#NineAmBTN_Click" prefHeight="25.0" prefWidth="68.0" text="9:00 AM" />
+                <Button fx:id="TenAmBtn" layoutX="366.0" layoutY="153.0" mnemonicParsing="false" onAction="#TenAmBtn_Click" prefHeight="25.0" prefWidth="68.0" text="10:00 AM" />
+                <Button fx:id="ElevenAmBtn" layoutX="446.0" layoutY="153.0" mnemonicParsing="false" onAction="#ElevenAmBtn_Click" prefHeight="25.0" prefWidth="68.0" text="11:00 AM" />
+                <Button fx:id="OnePmBtn" layoutX="287.0" layoutY="190.0" mnemonicParsing="false" onAction="#OnePmBtn_Click" prefHeight="25.0" prefWidth="68.0" text="1:00 PM" />
+                <Button fx:id="TwoPmBtn" layoutX="366.0" layoutY="190.0" mnemonicParsing="false" onAction="#TwoPmBtn_Click" prefHeight="25.0" prefWidth="68.0" text="2:00 PM" />
+                <Button fx:id="ThreePmBtn" layoutX="446.0" layoutY="190.0" mnemonicParsing="false" onAction="#ThreePmBtn_Click" prefHeight="25.0" prefWidth="68.0" text="3:00 PM" />
+                <TableView fx:id="reservationTable" layoutX="162.0" layoutY="320.0" prefHeight="200.0" prefWidth="475.0">
+                    <columns>
+                        <TableColumn fx:id="reservationID_Tbl" prefWidth="92.00001525878906" text="Reservation ID" />
+                        <TableColumn fx:id="Name_Tbl" prefWidth="82.66665649414062" text="Name" />
+                        <TableColumn fx:id="LastName_Tbl" prefWidth="101.33328247070312" text="Last Name" />
+                        <TableColumn fx:id="Date_Tbl" prefWidth="100.66665649414062" text="Date" />
+                        <TableColumn fx:id="Time_Tbl" prefWidth="95.3333740234375" text="Time" />
+                    </columns>
+                </TableView>
+            <Button fx:id="backBtn" layoutX="379.0" layoutY="530.0" mnemonicParsing="false" onAction="#backBtn_Click" text="Back" />
+            </children>
+        </AnchorPane>
+    </children>
+</StackPane>
