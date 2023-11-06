@@ -7,11 +7,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 
 import javax.swing.*;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.util.HashSet;
 import java.util.NoSuchElementException;
+import java.util.Set;
 
 public class MainQueue {
     private final PriorityQueue<String> priorityQueue = new PriorityQueue<>();
@@ -106,28 +105,56 @@ public class MainQueue {
         choiceBox.setItems(FXCollections.observableArrayList(choices));
 
         refreshOutput();
-        handleLoadFileAction();
+        //handleLoadFileAction();
     }
 
     @FXML
     public void handleAddButtonAction() {
-
-
         // Extract input data from your UI components
         String first = firstName_Input.getText();
         String last = lastName_Input.getText();
         String contact = number_Input.getText();
         String reason = choiceBox.getValue();
 
-        // Create a formatted input string
-        String input = first + " , " + last + " , " + contact + " , " + date + " , " + reason;
+        // Check if any of the input fields are empty
+        if (first.isEmpty() || last.isEmpty() || contact.isEmpty() || reason == null) {
+            error_message("Wrong/Missing input");
+        } else {
+            // Use regular expressions to check for special characters in first name, last name, and contact
+            if (!isValidInput(first) || !isValidInput(last) || !isValidContactNumber(contact)) {
+                error_message("Invalid/Missing inputs.");
+            } else {
+                try {
+                    long contactNumber = Long.parseLong(contact);
+                    int priority = date.equals("9:00 AM") ? 11 : 1; // Check if date is "9:00 AM"
 
-        // Add the item to the priority queue
-        priorityQueue.add(input, 1);
+                    // Create a formatted input string
+                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + reason;
 
-        // Refresh the output in your UI
-        refreshOutput();
+                    // Add the item to the priority queue with the determined priority
+                    priorityQueue.add(input, priority);
+
+                    // Refresh the output in your UI
+                    refreshOutput();
+
+                    // Show a success message
+                    JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
+                } catch (NumberFormatException e) {
+                    error_message("Invalid contact number. Please enter a non-negative number.");
+                }
+            }
+        }
     }
+
+
+    private boolean isValidInput(String input) {
+        return input.matches("^[a-zA-Z0-9]*$");
+    }
+
+    private boolean isValidContactNumber(String contact) {
+        return contact.matches("^\\d{11}$");
+    }
+
 
     @FXML
     public void addButton_Click(ActionEvent event) {
@@ -144,6 +171,7 @@ public class MainQueue {
         String input = first + " , " + last + " , " + contact + " , "+ reason;
         priorityQueue.add(input, 5); // Call the method to add the item to the priority queue
         System.out.println(priorityQueue);
+
         refreshOutput();
     }
 
@@ -186,6 +214,7 @@ public class MainQueue {
 
     @FXML
     public void handleEditButtonAction() {
+        refreshOutput();
         handleLoadFileAction();
 
         /*
@@ -215,6 +244,10 @@ public class MainQueue {
     @FXML
     public void handleLoadFileAction() {
         File file = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt");
+
+        // Create a set to store items already present in the PriorityQueue
+        Set<String> existingItems = new HashSet<>(priorityQueue.getItems());
+
         try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
             String line;
             while ((line = reader.readLine()) != null) {
@@ -226,12 +259,31 @@ public class MainQueue {
                     String time = parts[3].trim();
                     String reason = parts[4].trim();
                     String input = name + " , " + lastName + " , " + age + " , " + time + " , " + reason;
-                    priorityQueue.add(input, 1);
+
+                    // Check if the item is new (not in the existingItems set)
+                    if (!existingItems.contains(input)) {
+                        int priority = time.contains("9:00 AM") ? 12 : 5;
+                        priorityQueue.add(input, priority);
+                    }
                 }
             }
             refreshOutput();
         } catch (IOException e) {
             error_message("Error reading the file: " + e.getMessage());
+        }
+    }
+
+
+
+    void addData(String name, String lastName, String contactNumber, String date , String reason) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
+            writer.write(name + ",");
+            writer.write(lastName + ",");
+            writer.write(contactNumber + ",");
+            writer.write(date + ",");
+            writer.write(reason + "\r\n");
+        } catch (IOException ex) {
+            ex.printStackTrace(); // Handle or log the exception properly
         }
     }
 

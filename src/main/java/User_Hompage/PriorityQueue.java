@@ -1,6 +1,7 @@
 package User_Hompage;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class PriorityQueue<E extends Comparable<E>> {
@@ -130,5 +131,13 @@ public class PriorityQueue<E extends Comparable<E>> {
         public int getPriority() {
             return priority;
         }
+    }
+
+    public List<E> getItems() {
+        List<E> items = new ArrayList<>();
+        for (QueueNode<E> node : queue) {
+            items.add(node.getItem());
+        }
+        return items;
     }
 }
