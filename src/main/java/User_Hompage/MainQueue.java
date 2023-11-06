@@ -1,13 +1,10 @@
 package User_Hompage;
 
+import com.example.dsa_final.Main;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.io.BufferedReader;
@@ -19,6 +16,7 @@ import java.util.NoSuchElementException;
 public class MainQueue {
     private final PriorityQueue<String> priorityQueue = new PriorityQueue<>();
     private static final String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
+    private String date;
 
     @FXML
     public TextArea outputArea;
@@ -46,6 +44,8 @@ public class MainQueue {
 
     @FXML
     private Button walkInButton;
+    @FXML
+    private Button backButton;
 
     @FXML
     private TextField firstName_Input;
@@ -57,22 +57,75 @@ public class MainQueue {
     private TextField number_Input;
     @FXML
     private ChoiceBox<String> choiceBox;
+
+    @FXML
+    private RadioButton nineAm;
+    @FXML
+    private RadioButton tenAm;
+    @FXML
+    private RadioButton elevenAm;
+
+    @FXML
+    private RadioButton onePM;
+
+    @FXML
+    private RadioButton twoPm;
+
+    @FXML
+    private RadioButton threePm;
+
+
+
     private String[] choices ={"General check up","Tooth Extraction","ramen","X-Ray", "Consultation"};
 
     @FXML
     private void initialize() {
-        // Initialize the controller
+        ToggleGroup dateToggleGroup = new ToggleGroup();
+        nineAm.setToggleGroup(dateToggleGroup);
+        tenAm.setToggleGroup(dateToggleGroup);
+        elevenAm.setToggleGroup(dateToggleGroup);
+        onePM.setToggleGroup(dateToggleGroup);
+        twoPm.setToggleGroup(dateToggleGroup);
+        threePm.setToggleGroup(dateToggleGroup);
+
+        dateToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
+            if (dateToggleGroup.getSelectedToggle() != null) {
+                RadioButton selectedRadio = (RadioButton) dateToggleGroup.getSelectedToggle();
+                date = selectedRadio.getUserData().toString();
+            }
+        });
+
+        // Set user data for radio buttons to store the date.
+        nineAm.setUserData("9:00 AM");
+        tenAm.setUserData("10:00 AM");
+        elevenAm.setUserData("11:00 AM");
+        onePM.setUserData("1:00 PM");
+        twoPm.setUserData("2:00 PM");
+        threePm.setUserData("3:00 PM");
+
         choiceBox.setItems(FXCollections.observableArrayList(choices));
+
+        refreshOutput();
+        handleLoadFileAction();
     }
 
     @FXML
     public void handleAddButtonAction() {
+
+
+        // Extract input data from your UI components
         String first = firstName_Input.getText();
         String last = lastName_Input.getText();
         String contact = number_Input.getText();
         String reason = choiceBox.getValue();
-        String input = first + " , " + last + " , " + contact + " , " + reason;
-        priorityQueue.add(input, 1); // Add the item to the priority queue
+
+        // Create a formatted input string
+        String input = first + " , " + last + " , " + contact + " , " + date + " , " + reason;
+
+        // Add the item to the priority queue
+        priorityQueue.add(input, 1);
+
+        // Refresh the output in your UI
         refreshOutput();
     }
 
@@ -83,19 +136,19 @@ public class MainQueue {
     }
     @FXML
     public void HandleWalkInButtonAction(ActionEvent event) {
+
         String first = firstName_Input.getText();
         String last = lastName_Input.getText();
         String contact = number_Input.getText();
         String reason = choiceBox.getValue();
         String input = first + " , " + last + " , " + contact + " , "+ reason;
-        priorityQueue.add(input, 1); // Call the method to add the item to the priority queue
+        priorityQueue.add(input, 5); // Call the method to add the item to the priority queue
         System.out.println(priorityQueue);
         refreshOutput();
     }
 
     @FXML
     public void firstName_Input(ActionEvent event) {
-
 
     }
 
@@ -118,11 +171,6 @@ public class MainQueue {
         } catch (NoSuchElementException e) {
             error_message("Priority Queue is empty.");
         }
-    }
-
-    @FXML
-    void choiceBox_Input(MouseEvent event) {
-    choiceBox.setItems(FXCollections.observableArrayList("General Check Up", "Tooth Extraction", "X-Ray", "Consultation"));
     }
 
 
@@ -164,15 +212,6 @@ public class MainQueue {
         JOptionPane.showMessageDialog(null, msg, "Error", JOptionPane.ERROR_MESSAGE);
     }
 
-    public TextArea getOutputArea() {
-        return outputArea;
-    }
-
-    public void addToPriorityQueue(String item) {
-        priorityQueue.add(item, 1); // Add the item to the priority queue
-        refreshOutput(); // Refresh the outputArea
-    }
-
     @FXML
     public void handleLoadFileAction() {
         File file = new File("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt");
@@ -187,13 +226,48 @@ public class MainQueue {
                     String time = parts[3].trim();
                     String reason = parts[4].trim();
                     String input = name + " , " + lastName + " , " + age + " , " + time + " , " + reason;
-                    priorityQueue.add(input, 5);
+                    priorityQueue.add(input, 1);
                 }
             }
             refreshOutput();
         } catch (IOException e) {
             error_message("Error reading the file: " + e.getMessage());
         }
+    }
+
+    @FXML
+    void nineAm_Action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void tenAm_Action(ActionEvent event) {
+
+    }
+    @FXML
+    void elevenAm_Action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void onePM_Action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void twoPm_Action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void threePm_Action(ActionEvent event) {
+
+    }
+
+    @FXML
+    void backButton_Click(ActionEvent event) throws IOException {
+        Main m = new Main();
+        m.changeScene("UserHomepage.fxml");
     }
 
 

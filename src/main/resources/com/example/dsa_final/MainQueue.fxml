@@ -3,6 +3,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -13,19 +14,26 @@
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
             <TextArea fx:id="outputArea" layoutX="198.0" layoutY="31.0" prefHeight="123.0" prefWidth="404.0" />
-            <TextField fx:id="firstName_Input" layoutX="314.0" layoutY="212.0" onAction="#firstName_Input" prefHeight="26.0" prefWidth="77.0" />
-            <Button fx:id="addButton" layoutX="316.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="26.0" prefWidth="172.0" text="Add" />
+            <TextField fx:id="firstName_Input" layoutX="314.0" layoutY="206.0" onAction="#firstName_Input" prefHeight="26.0" prefWidth="77.0" />
+            <Button fx:id="addButton" layoutX="314.0" layoutY="356.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="26.0" prefWidth="172.0" text="Add" />
             <Button fx:id="deleteButton" layoutX="352.0" layoutY="414.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" text="Delete" />
             <Button fx:id="editButton" layoutX="353.0" layoutY="441.0" mnemonicParsing="false" onAction="#handleEditButtonAction" prefHeight="26.0" prefWidth="94.0" text="Visualize" />
             <Button fx:id="walkInButton" layoutX="353.0" layoutY="468.0" mnemonicParsing="false" onAction="#HandleWalkInButtonAction" prefHeight="26.0" prefWidth="94.0" text="Walk in" />
             <Label layoutX="361.0" layoutY="167.0" text="Walk in clients" />
-            <Label layoutX="314.0" layoutY="191.0" text="Name" />
-            <TextField fx:id="lastName_Input" layoutX="408.0" layoutY="212.0" onAction="#lastName_Input" prefHeight="26.0" prefWidth="78.0" />
-            <Label layoutX="408.0" layoutY="191.0" text="Last name" />
-            <TextField fx:id="number_Input" layoutX="314.0" layoutY="262.0" prefHeight="26.0" prefWidth="77.0" />
-            <Label layoutX="316.0" layoutY="245.0" text="Number" />
-            <ChoiceBox fx:id="choiceBox" layoutX="408.0" layoutY="262.0" onDragDetected="#choiceBox_Input" prefHeight="26.0" prefWidth="78.0" />
-            <Label layoutX="408.0" layoutY="245.0" text="Choicebox" />
+            <Label layoutX="314.0" layoutY="185.0" text="Name" />
+            <TextField fx:id="lastName_Input" layoutX="408.0" layoutY="206.0" onAction="#lastName_Input" prefHeight="26.0" prefWidth="78.0" />
+            <Label layoutX="408.0" layoutY="185.0" text="Last name" />
+            <TextField fx:id="number_Input" layoutX="314.0" layoutY="256.0" prefHeight="26.0" prefWidth="77.0" />
+            <Label layoutX="316.0" layoutY="239.0" text="Number" />
+            <ChoiceBox fx:id="choiceBox" layoutX="408.0" layoutY="256.0" prefHeight="26.0" prefWidth="78.0" />
+            <Label layoutX="408.0" layoutY="239.0" text="Choicebox" />
+            <RadioButton fx:id="nineAm" layoutX="283.0" layoutY="291.0" mnemonicParsing="false" onAction="#nineAm_Action" text="9:00 AM" />
+            <RadioButton fx:id="tenAm" layoutX="363.0" layoutY="291.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10:00 AM" />
+            <RadioButton fx:id="elevenAm" layoutX="447.0" layoutY="291.0" mnemonicParsing="false" onAction="#elevenAm_Action" text="11:00 AM" />
+            <RadioButton fx:id="onePM" layoutX="283.0" layoutY="316.0" mnemonicParsing="false" onAction="#onePM_Action" text="1:00 PM" />
+            <RadioButton fx:id="twoPm" layoutX="365.0" layoutY="316.0" mnemonicParsing="false" onAction="#twoPm_Action" text="2:00 PM" />
+            <RadioButton fx:id="threePm" layoutX="447.0" layoutY="316.0" mnemonicParsing="false" onAction="#threePm_Action" text="3:00 PM" />
+            <Button fx:id="backButton" layoutX="377.0" layoutY="510.0" mnemonicParsing="false" onAction="#backButton_Click" text="Back" />
          </children>
       </AnchorPane>
    </children>
