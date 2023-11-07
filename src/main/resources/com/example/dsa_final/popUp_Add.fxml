@@ -11,9 +11,9 @@
       <Label layoutX="103.0" layoutY="69.0" text="Cutomer walk-in details" />
       <TextField fx:id="firstName" layoutX="74.0" layoutY="113.0" prefHeight="26.0" prefWidth="85.0" />
       <TextField fx:id="lastName" layoutX="172.0" layoutY="113.0"  prefHeight="26.0" prefWidth="86.0" />
-      <TextField fx:id="number" layoutX="73.0" layoutY="154.0" o" prefHeight="26.0" prefWidth="86.0" />
+      <TextField fx:id="number" layoutX="73.0" layoutY="154.0"  prefHeight="26.0" prefWidth="86.0" />
       <ChoiceBox layoutX="172.0" layoutY="154.0" prefHeight="26.0" prefWidth="86.0" />
-      <Button fx:id="addButtonNew" layoutX="72.0" layoutY="200.0" mnemonicParsing="false"  prefHeight="26.0" prefWidth="186.0" text="Add" />
+      <Button fx:id="addButtonNew" layoutX="72.0" layoutY="200.0" mnemonicParsing="false"  prefHeight="26.0" prefWidth="186.0" text="Add"  />
       <Label layoutX="74.0" layoutY="96.0" text="First name" />
       <Label layoutX="172.0" layoutY="96.0" text="Last name" />
       <Label layoutX="73.0" layoutY="139.0" text="Contact#" />
