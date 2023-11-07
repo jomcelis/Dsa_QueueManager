@@ -107,10 +107,11 @@ public class MainQueue {
 
 
     private String[] choices ={"General check up","Tooth Extraction","ramen","X-Ray", "Consultation"};
-
+    private PriorityQueue originalQueue;
     @FXML
     private void initialize() {
         ToggleGroup dateToggleGroup = new ToggleGroup();
+        originalQueue = new PriorityQueue<>();
         nineAm.setToggleGroup(dateToggleGroup);
         tenAm.setToggleGroup(dateToggleGroup);
         elevenAm.setToggleGroup(dateToggleGroup);
@@ -493,6 +494,9 @@ public class MainQueue {
 
 
 
+    private void refreshOutput(PriorityQueue originalQueue, String s) {
+    }
+
 
     private String getTimeSlotByIndex(int slotIndex) {
         switch (slotIndex) {
@@ -510,30 +514,36 @@ public class MainQueue {
     @FXML
     void nineAm_Action(ActionEvent event) {
 
+        refreshOutput();
     }
 
     @FXML
     void tenAm_Action(ActionEvent event) {
-
+        //filterPriorityQueueByTime(date);
+        refreshOutput();
     }
     @FXML
     void elevenAm_Action(ActionEvent event) {
 
+        refreshOutput();
     }
 
     @FXML
     void onePM_Action(ActionEvent event) {
 
+        refreshOutput();
     }
 
     @FXML
     void twoPm_Action(ActionEvent event) {
 
+        refreshOutput();
     }
 
     @FXML
     void threePm_Action(ActionEvent event) {
 
+        refreshOutput();
     }
 
     @FXML
@@ -546,6 +556,7 @@ public class MainQueue {
     void refreshBtn_Click(ActionEvent event) {
     refreshOutput();
     updateLabelsFromFileData();
+
     }
 
 

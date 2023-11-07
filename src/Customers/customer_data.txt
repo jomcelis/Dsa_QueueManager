@@ -1,2 +1,1 @@
-Jomari,Celis,12345678901,10:00 AM,Tooth Extraction
 Jap,qweq,12345678901,11:00 AM,Tooth Extraction

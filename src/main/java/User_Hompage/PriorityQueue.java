@@ -141,5 +141,17 @@ public class PriorityQueue<E extends Comparable<E>> {
         return items;
     }
 
-    
+    public void clear() {
+        queue.clear();
+    }
+
+    public void addAll(List<E> items, List<Integer> priorities) {
+        if (items.size() != priorities.size()) {
+            throw new IllegalArgumentException("Items and priorities lists must have the same size.");
+        }
+
+        for (int i = 0; i < items.size(); i++) {
+            add(items.get(i), priorities.get(i));
+        }
+    }
 }
