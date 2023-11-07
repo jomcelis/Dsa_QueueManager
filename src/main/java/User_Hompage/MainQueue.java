@@ -8,12 +8,12 @@ import javafx.scene.control.*;
 
 import javax.swing.*;
 import java.io.*;
-import java.util.HashSet;
-import java.util.NoSuchElementException;
-import java.util.Set;
+import java.util.*;
 
 public class MainQueue {
     private final PriorityQueue<String> priorityQueue = new PriorityQueue<>();
+    private List<PriorityItem> priorityItems = new ArrayList<>();
+
     private static final String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
     private String date;
 
@@ -73,6 +73,37 @@ public class MainQueue {
     @FXML
     private RadioButton threePm;
 
+    @FXML
+    private Button refreshBtn;
+    @FXML
+    private Label reservationFive;
+
+    @FXML
+    private Label reservationFour;
+
+    @FXML
+    private Label reservationOne;
+
+    @FXML
+    private Label reservationThree;
+
+    @FXML
+    private Label reservationTwo;
+    @FXML
+    private Label reservationSix;
+
+    @FXML
+    private Label currentReservation;
+
+    @FXML
+    Label currentTime;
+
+
+    @FXML
+    private void updateCurrentTime() {
+        currentTime.setText(date); // Set the text of the "currentTime" label to the selected time
+    }
+
 
 
     private String[] choices ={"General check up","Tooth Extraction","ramen","X-Ray", "Consultation"};
@@ -91,6 +122,9 @@ public class MainQueue {
             if (dateToggleGroup.getSelectedToggle() != null) {
                 RadioButton selectedRadio = (RadioButton) dateToggleGroup.getSelectedToggle();
                 date = selectedRadio.getUserData().toString();
+                updateCurrentReservation(); // Call the method to update the "currentReservation" label
+                updateCurrentTime(); // Call the method to update the "currentTime" label
+                updateReservationLabels(); // Call the method to update reservation labels
             }
         });
 
@@ -105,8 +139,9 @@ public class MainQueue {
         choiceBox.setItems(FXCollections.observableArrayList(choices));
 
         refreshOutput();
-        //handleLoadFileAction();
+        updateReservationLabels(); // Call the method to initially update the reservation labels
     }
+
 
     @FXML
     public void handleAddButtonAction() {
@@ -126,7 +161,32 @@ public class MainQueue {
             } else {
                 try {
                     long contactNumber = Long.parseLong(contact);
-                    int priority = date.equals("9:00 AM") ? 11 : 1; // Check if date is "9:00 AM"
+                    int priority;
+
+                    // Set priority based on the date
+                    switch (date) {
+                        case "9:00 AM":
+                            priority = 11;
+                            break;
+                        case "10:00 AM":
+                            priority = 9;
+                            break;
+                        case "11:00 AM":
+                            priority = 7;
+                            break;
+                        case "1:00 PM":
+                            priority = 5;
+                            break;
+                        case "2:00 PM":
+                            priority = 3;
+                            break;
+                        case "3:00 PM":
+                            priority = 1;
+                            break;
+                        default:
+                            priority = 1; // Default priority
+                            break;
+                    }
 
                     // Create a formatted input string
                     String input = first + " , " + last + " , " + contact + " , " + date + " , " + reason;
@@ -136,6 +196,7 @@ public class MainQueue {
 
                     // Refresh the output in your UI
                     refreshOutput();
+                    //handleLoadFileAction();
 
                     // Show a success message
                     JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -145,6 +206,7 @@ public class MainQueue {
             }
         }
     }
+
 
 
     private boolean isValidInput(String input) {
@@ -193,12 +255,25 @@ public class MainQueue {
     @FXML
     public void handleRemoveButtonAction() {
         try {
-            String removedItem = priorityQueue.remove();
+            String earliestTime = priorityQueue.peek().split(",")[3].trim();
+            priorityQueue.remove(); // Remove from the priority queue
+            removeItemsByTime(earliestTime); // Remove from the file
+
             refreshOutput();
-            JOptionPane.showMessageDialog(null, "Removed: " + removedItem, "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Removed the earliest item at " + earliestTime, "Item Removed", JOptionPane.INFORMATION_MESSAGE);
         } catch (NoSuchElementException e) {
             error_message("Priority Queue is empty.");
         }
+
+        updateLabelsFromFileData();
+    }
+
+    private void updateLabelsFromFileData() {
+        // Update the current reservation label based on the selected time
+        updateCurrentReservation();
+
+        // Update all reservation labels
+        updateReservationLabels();
     }
 
 
@@ -215,6 +290,7 @@ public class MainQueue {
     @FXML
     public void handleEditButtonAction() {
         refreshOutput();
+        updateLabelsFromFileData();
         handleLoadFileAction();
 
         /*
@@ -234,6 +310,7 @@ public class MainQueue {
     private void refreshOutput() {
 
         outputArea.setText(priorityQueue.toString());
+
 
     }
 
@@ -262,7 +339,33 @@ public class MainQueue {
 
                     // Check if the item is new (not in the existingItems set)
                     if (!existingItems.contains(input)) {
-                        int priority = time.contains("9:00 AM") ? 12 : 5;
+                        int priority;
+
+                        // Set priority based on time
+                        switch (time) {
+                            case "9:00 AM":
+                                priority = 12;
+                                break;
+                            case "10:00 AM":
+                                priority = 10;
+                                break;
+                            case "11:00 AM":
+                                priority = 8;
+                                break;
+                            case "1:00 PM":
+                                priority = 6;
+                                break;
+                            case "2:00 PM":
+                                priority = 4;
+                                break;
+                            case "3:00 PM":
+                                priority = 2;
+                                break;
+                            default:
+                                priority = 5; // Default priority
+                                break;
+                        }
+
                         priorityQueue.add(input, priority);
                     }
                 }
@@ -272,6 +375,7 @@ public class MainQueue {
             error_message("Error reading the file: " + e.getMessage());
         }
     }
+
 
 
 
@@ -286,6 +390,122 @@ public class MainQueue {
             ex.printStackTrace(); // Handle or log the exception properly
         }
     }
+
+    @FXML
+    public void updateCurrentReservation() {
+        String selectedTime = date;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            StringBuilder reservationText = new StringBuilder();
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String time = parts[3].trim();
+                    if (time.equals(selectedTime)) {
+                        // Display the reservation data in the label
+                        reservationText.append(parts[0].trim()).append(" ")
+                                .append(parts[1].trim()).append(", ")
+                                .append(parts[4].trim()).append("\n");
+                    }
+                }
+            }
+
+            if (!reservationText.isEmpty()) {
+                currentReservation.setText(reservationText.toString());
+            } else {
+                currentReservation.setText("No current reservations at this time.");
+            }
+        } catch (IOException e) {
+            error_message("Error reading the file: " + e.getMessage());
+        }
+    }
+
+    private void updateReservationLabels() {
+        List<Label> reservationLabels = Arrays.asList(
+                reservationOne, reservationTwo, reservationThree,
+                reservationFour, reservationFive, reservationSix
+        );
+
+        for (int i = 0; i < reservationLabels.size(); i++) {
+            reservationLabels.get(i).setText(getReservationsForTimeSlot(i));
+        }
+    }
+
+    private String getReservationsForTimeSlot(int slotIndex) {
+        String selectedTime = getTimeSlotByIndex(slotIndex);
+        StringBuilder reservationText = new StringBuilder();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String time = parts[3].trim();
+                    if (time.equals(selectedTime)) {
+                        // Display the reservation data in the label
+                        reservationText.append(parts[0].trim()).append(" ")
+                                .append(parts[1].trim()).append(", ")
+                                .append(parts[4].trim()).append("\n");
+                    }
+                }
+            }
+        } catch (IOException e) {
+            error_message("Error reading the file: " + e.getMessage());
+        }
+
+        if (reservationText.isEmpty()) {
+            return "No reservations at this time";
+        }
+
+        return reservationText.toString();
+    }
+
+    private void removeItemsByTime(String time) {
+        File inputFile = new File(filePath);
+        File tempFile = new File("temp.txt");
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String itemTime = parts[3].trim();
+                    if (!itemTime.equals(time)) {
+                        writer.write(line + System.getProperty("line.separator"));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (inputFile.delete()) {
+            if (!tempFile.renameTo(inputFile)) {
+                System.err.println("Error renaming temp file.");
+            }
+        }
+    }
+
+
+
+
+    private String getTimeSlotByIndex(int slotIndex) {
+        switch (slotIndex) {
+            case 0: return "9:00 AM";
+            case 1: return "10:00 AM";
+            case 2: return "11:00 AM";
+            case 3: return "1:00 PM";
+            case 4: return "2:00 PM";
+            case 5: return "3:00 PM";
+            default: return "";
+        }
+    }
+
 
     @FXML
     void nineAm_Action(ActionEvent event) {
@@ -320,6 +540,12 @@ public class MainQueue {
     void backButton_Click(ActionEvent event) throws IOException {
         Main m = new Main();
         m.changeScene("UserHomepage.fxml");
+    }
+
+    @FXML
+    void refreshBtn_Click(ActionEvent event) {
+    refreshOutput();
+    updateLabelsFromFileData();
     }
 
 
