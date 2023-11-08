@@ -259,21 +259,28 @@ public class MainQueue {
 
         boolean itemRemovedFromFile = removeItemFromFile(selectedTime);
 
-        if (itemRemovedFromFile || priorityQueue.isEmpty()) {
-            if (!priorityQueue.isEmpty()) {
+        if (itemRemovedFromFile) {
+            if(!priorityQueue.isEmpty()) {
                 priorityQueue.remove(); // Remove from the priority queue
             }
-
             refreshOutput();
+        }else if(!itemRemovedFromFile) {
+            if(!priorityQueue.isEmpty()){
+                priorityQueue.remove();
+            }else {
+                JOptionPane.showMessageDialog(null, "there are no people on queue");
+            }
+            ;
+        }
+
             if (itemRemovedFromFile) {
                 JOptionPane.showMessageDialog(null, "Removed item with time " + selectedTime, "Item Removed", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 JOptionPane.showMessageDialog(null, "No matching item found in the file. Removed the earliest item in the queue.", "Item Removed", JOptionPane.INFORMATION_MESSAGE);
             }
+        updateLabelsFromFileData();
         }
 
-        updateLabelsFromFileData();
-    }
 
 
 
