@@ -14,9 +14,9 @@
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dsa_final.HelloController">
    <Pane layoutX="215.0" layoutY="107.0" prefHeight="408.0" prefWidth="370.0" style="-fx-background-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0); -fx-background-radius: 15px; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5,1, 1.5);">
       <children>
-          <Button fx:id="SignIn_Button" layoutX="97.0" layoutY="239.0" mnemonicParsing="false" onAction="#SignInBtn_Click" onMouseEntered="#OnMouseEnter" onMouseExited="#OnMouseExit" prefHeight="6.0" prefWidth="176.0" style="-fx-background-color: white; -fx-background-radius: 15px;" text="Sign in">
+          <Button fx:id="SignIn_Button" layoutX="100.0" layoutY="242.0" mnemonicParsing="false" onAction="#SignInBtn_Click" onMouseEntered="#OnMouseEnter" onMouseExited="#OnMouseExit" prefHeight="6.0" prefWidth="176.0" style="-fx-background-color: white; -fx-background-radius: 15px;" text="Sign in">
             <font>
-               <Font name="HelveticaRounded-Bold" size="17.0" />
+               <Font name="SansSerif Regular" size="17.0" />
             </font>
             <textFill>
                <LinearGradient endX="1.0" endY="1.0">
@@ -45,18 +45,18 @@
                </DropShadow>
             </effect>
          </Button>
-        <TextField fx:id="SignIn_Username" layoutX="64.0" layoutY="127.0" prefHeight="44.0" prefWidth="241.0" promptText="Username" style="-fx-background-color: #F3F1F9; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5,1, 2);" />
-         <Text fill="WHITE" layoutX="116.0" layoutY="81.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Dental Clinic">
+        <TextField fx:id="SignIn_Username" layoutX="68.0" layoutY="129.0" prefHeight="44.0" prefWidth="241.0" promptText="Username" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5,1, 2);" />
+         <Text fill="WHITE" layoutX="119.0" layoutY="76.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5,1, 2);" text="Dental Clinic">
             <font>
-               <Font name="HelveticaRounded-Bold" size="22.0" />
+               <Font name="SansSerif Bold" size="22.0" />
             </font>
          </Text>
-         <Text fill="WHITE" layoutX="97.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Queue manager">
+         <Text fill="WHITE" layoutX="102.0" layoutY="101.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5,1, 2);" text="Queue manager">
             <font>
-               <Font name="HelveticaRounded-Bold" size="22.0" />
+               <Font name="SansSerif Bold" size="22.0" />
             </font>
          </Text>
-        <TextField fx:id="SignIn_Password" layoutX="65.0" layoutY="182.0" prefHeight="44.0" prefWidth="241.0" promptText="Password" style="-fx-background-color: #F3F1F9; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5,1, 2);" />
+        <TextField fx:id="SignIn_Password" layoutX="68.0" layoutY="182.0" prefHeight="44.0" prefWidth="241.0" promptText="Password" style="-fx-background-color: white; -fx-background-insets: 0, 0 0 1 0; -fx-background-radius: 15; -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 5, 0.5,1, 2);" />
       </children>
       <cursor>
          <Cursor fx:constant="DEFAULT" />

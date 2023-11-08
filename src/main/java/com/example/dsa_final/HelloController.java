@@ -10,6 +10,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+import javax.swing.*;
 import java.io.IOException;
 
 public class HelloController {
@@ -38,7 +39,15 @@ public class HelloController {
         scaleTransition.play();
 
         Main m = new Main();
-        m.changeScene("MainQueue.fxml");
+        if(SignIn_Username.getText().equals("admin")&& SignIn_Password.getText().equals("123")){
+            m.changeScene("MainQueue.fxml");
+        }else{
+            JOptionPane.showMessageDialog(null,"Incorrect username/Password");
+            SignIn_Username.setText("");
+            SignIn_Password.setText("");
+        }
+
+
     }
 
     @FXML
