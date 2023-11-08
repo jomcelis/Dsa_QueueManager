@@ -1,0 +1,14 @@
+.buttonOne {
+    -fx-background-color: white;
+    -fx-background-radius: 15px;
+    -fx-border-color:  linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+    -fx-border-radius: 15px;
+}
+
+.buttonTwo {
+-fx-background-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);
+-fx-background-radius: 15px;
+}
+.shadows{
+-fx-effect:dropshadow(gaussian, rgba(100, 77, 160, 0.3), 5, 0.1,1, 1.5);
+}

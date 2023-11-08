@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
@@ -9,73 +10,140 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="User_Hompage.MainQueue">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="800.0">
          <children>
-            <TextField fx:id="firstName_Input" layoutX="149.0" layoutY="90.0" onAction="#firstName_Input" prefHeight="26.0" prefWidth="77.0" />
-            <Button fx:id="addButton" layoutX="149.0" layoutY="240.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="26.0" prefWidth="172.0" text="Add" />
-            <Button fx:id="deleteButton" layoutX="187.0" layoutY="298.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="26.0" prefWidth="94.0" text="Delete" />
-            <Button fx:id="editButton" layoutX="188.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleEditButtonAction" prefHeight="26.0" prefWidth="94.0" text="Visualize" />
-            <Button fx:id="walkInButton" layoutX="188.0" layoutY="352.0" mnemonicParsing="false" onAction="#HandleWalkInButtonAction" prefHeight="26.0" prefWidth="94.0" text="Walk in" />
-            <Label layoutX="196.0" layoutY="51.0" text="Walk in clients" />
-            <Label layoutX="149.0" layoutY="69.0" text="Name" />
-            <TextField fx:id="lastName_Input" layoutX="243.0" layoutY="90.0" onAction="#lastName_Input" prefHeight="26.0" prefWidth="78.0" />
-            <Label layoutX="243.0" layoutY="69.0" text="Last name" />
-            <TextField fx:id="number_Input" layoutX="149.0" layoutY="140.0" prefHeight="26.0" prefWidth="77.0" />
-            <Label layoutX="151.0" layoutY="123.0" text="Number" />
-            <ChoiceBox fx:id="choiceBox" layoutX="243.0" layoutY="140.0" prefHeight="26.0" prefWidth="78.0" />
-            <Label layoutX="243.0" layoutY="123.0" text="Choicebox" />
-            <RadioButton fx:id="nineAm" layoutX="118.0" layoutY="175.0" mnemonicParsing="false" onAction="#nineAm_Action" text="9:00 AM" />
-            <RadioButton fx:id="tenAm" layoutX="198.0" layoutY="175.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10:00 AM" />
-            <RadioButton fx:id="elevenAm" layoutX="282.0" layoutY="175.0" mnemonicParsing="false" onAction="#elevenAm_Action" text="11:00 AM" />
-            <RadioButton fx:id="onePM" layoutX="118.0" layoutY="200.0" mnemonicParsing="false" onAction="#onePM_Action" text="1:00 PM" />
-            <RadioButton fx:id="twoPm" layoutX="200.0" layoutY="200.0" mnemonicParsing="false" onAction="#twoPm_Action" text="2:00 PM" />
-            <RadioButton fx:id="threePm" layoutX="282.0" layoutY="200.0" mnemonicParsing="false" onAction="#threePm_Action" text="3:00 PM" />
-            <Button fx:id="backButton" layoutX="212.0" layoutY="431.0" mnemonicParsing="false" onAction="#backButton_Click" text="Back" />
-            <Button fx:id="refreshBtn" layoutX="328.0" layoutY="326.0" mnemonicParsing="false" onAction="#refreshBtn_Click" text="Refressh" />
-            <Pane fx:id="mainPain" layoutX="400.0" layoutY="28.0" prefHeight="327.0" prefWidth="384.0" style="-fx-background-color: gray;">
+
+            <TextField fx:id="firstName_Input" layoutX="416.0" layoutY="98.0" onAction="#firstName_Input" prefHeight="27.0" prefWidth="182.0" stylesheets="@styles.css">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></TextField>
+            <Button fx:id="addButton" layoutX="416.0" layoutY="189.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="27.0" prefWidth="368.0" stylesheets="@styles.css" text="Enqueue">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></Button>
+            <Button fx:id="deleteButton" layoutX="416.0" layoutY="224.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="27.0" prefWidth="368.0" stylesheets="@styles.css" text="Dequeue">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></Button>
+            <Button fx:id="editButton" layoutX="416.0" layoutY="261.0" mnemonicParsing="false" onAction="#handleEditButtonAction" prefHeight="27.0" prefWidth="368.0" stylesheets="@styles.css" text="Visualize">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></Button>
+            <Button fx:id="walkInButton" layoutX="553.0" layoutY="341.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="94.0" stylesheets="@styles.css" text="Walk in">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></Button>
+            <Label layoutX="416.0" layoutY="77.0" text="Name" />
+            <TextField fx:id="lastName_Input" layoutX="603.0" layoutY="98.0" onAction="#lastName_Input" prefHeight="27.0" prefWidth="182.0" stylesheets="@styles.css">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></TextField>
+            <Label layoutX="604.0" layoutY="77.0" text="Last name" />
+            <TextField fx:id="number_Input" layoutX="416.0" layoutY="148.0" prefHeight="27.0" prefWidth="102.0" stylesheets="@styles.css">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></TextField>
+            <Label layoutX="416.0" layoutY="131.0" text="Contact number" />
+            <ChoiceBox fx:id="choiceBox" layoutX="603.0" layoutY="148.0" prefHeight="27.0" prefWidth="182.0" stylesheets="@styles.css">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></ChoiceBox>
+            <Label layoutX="603.0" layoutY="131.0" text="Reason:" />
+            <RadioButton fx:id="nineAm" layoutX="414.0" layoutY="398.0" mnemonicParsing="false" onAction="#nineAm_Action" text="9:00 AM" />
+            <RadioButton fx:id="tenAm" layoutX="504.0" layoutY="397.0" mnemonicParsing="false" onAction="#tenAm_Action" text="10:00 AM" />
+            <RadioButton fx:id="elevenAm" layoutX="600.0" layoutY="398.0" mnemonicParsing="false" onAction="#elevenAm_Action" text="11:00 AM" />
+            <RadioButton fx:id="onePM" layoutX="415.0" layoutY="423.0" mnemonicParsing="false" onAction="#onePM_Action" text="1:00 PM" />
+            <RadioButton fx:id="twoPm" layoutX="504.0" layoutY="423.0" mnemonicParsing="false" onAction="#twoPm_Action" text="2:00 PM" />
+            <RadioButton fx:id="threePm" layoutX="600.0" layoutY="423.0" mnemonicParsing="false" onAction="#threePm_Action" text="3:00 PM" />
+            <Button fx:id="backButton" layoutX="538.0" layoutY="474.0" mnemonicParsing="false" onAction="#backButton_Click" prefHeight="26.0" prefWidth="119.0" styleClass="buttonTwo" stylesheets="@styles.css" text="LogIn Page" textFill="WHITE">
+               <font>
+                  <Font name="SansSerif Regular" size="12.0" />
+               </font></Button>
+            <Button fx:id="refreshBtn" layoutX="417.0" layoutY="300.0" mnemonicParsing="false" onAction="#refreshBtn_Click" prefHeight="27.0" prefWidth="368.0" stylesheets="@styles.css" text="Refresh">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass></Button>
+            <Pane layoutX="18.0" layoutY="14.0" prefHeight="58.0" prefWidth="368.0" style="-fx-background-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);; -fx-background-radius: 15;">
                <children>
-                  <TextArea fx:id="outputArea" layoutX="9.0" layoutY="70.0" prefHeight="248.0" prefWidth="368.0" />
-                  <Pane layoutX="10.0" layoutY="7.0" prefHeight="57.0" prefWidth="368.0" style="-fx-background-color: orange;">
-                     <children>
-                        <Label fx:id="currentReservation" layoutX="14.0" layoutY="6.0" text="Current Reservation" />
-                        <Label fx:id="currentTime" layoutX="290.0" layoutY="20.0" text="currentTime" />
-                     </children>
-                  </Pane>
+                  <Label fx:id="currentReservation" layoutX="13.0" layoutY="25.0" text="Current Reservation" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="currentTime" layoutX="292.0" layoutY="8.0" text="9:00 AM" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="16.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="14.0" layoutY="6.0" text="Current Reservation:" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="12.0" />
+                     </font>
+                  </Label>
                </children>
             </Pane>
-            <Pane layoutX="400.0" layoutY="365.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: gray;">
+            <Pane layoutX="17.0" layoutY="341.0" prefHeight="47.0" prefWidth="182.0" styleClass="buttonTwo" stylesheets="@styles.css">
                <children>
-                  <Label fx:id="reservationOne" layoutX="14.0" layoutY="5.0" text="Reservatoin 1" />
+                  <Label fx:id="reservationOne" layoutX="14.0" layoutY="5.0" text="Reservatoin 1" textFill="WHITE" />
                </children>
             </Pane>
-            <Pane layoutX="601.0" layoutY="365.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: gray;">
+            <Pane layoutX="202.0" layoutY="341.0" prefHeight="47.0" prefWidth="182.0" styleClass="buttonOne" stylesheets="@styles.css">
                <children>
                   <Label fx:id="reservationTwo" layoutX="14.0" layoutY="5.0" text="Reservation 2" />
                </children>
             </Pane>
-            <Pane layoutX="400.0" layoutY="420.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: gray;">
+            <Pane layoutX="17.0" layoutY="396.0" prefHeight="47.0" prefWidth="182.0" styleClass="buttonOne" stylesheets="@styles.css">
                <children>
                   <Label fx:id="reservationThree" layoutX="14.0" layoutY="5.0" text="Reservatoin 3" />
                </children>
             </Pane>
-            <Pane layoutX="601.0" layoutY="420.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: gray;">
+            <Pane layoutX="202.0" layoutY="396.0" prefHeight="47.0" prefWidth="182.0" styleClass="buttonOne" stylesheets="@styles.css">
                <children>
                   <Label fx:id="reservationFour" layoutX="14.0" layoutY="5.0" text="Reservation 4" />
                </children>
             </Pane>
-            <Pane layoutX="400.0" layoutY="474.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: gray;">
+            <Pane layoutX="17.0" layoutY="450.0" prefHeight="47.0" prefWidth="182.0" styleClass="buttonOne" stylesheets="@styles.css">
                <children>
                   <Label fx:id="reservationFive" layoutX="14.0" layoutY="5.0" text="Reservation 5" />
                </children>
             </Pane>
-            <Pane layoutX="601.0" layoutY="474.0" prefHeight="47.0" prefWidth="182.0" style="-fx-background-color: gray;">
+            <Pane layoutX="202.0" layoutY="450.0" prefHeight="47.0" prefWidth="182.0" styleClass="buttonOne" stylesheets="@styles.css">
                <children>
                   <Label fx:id="reservationSix" layoutX="14.0" layoutY="5.0" text="Reservation 6" />
                </children>
             </Pane>
+            <TextArea fx:id="outputArea" layoutX="17.0" layoutY="76.0" prefHeight="254.0" prefWidth="368.0" style="-fx-background-color: transparent;" />
+            <Pane layoutX="417.0" layoutY="14.0" prefHeight="58.0" prefWidth="368.0" style="-fx-background-color: linear-gradient(to right top, #3c56a6, #4155a5, #4553a4, #4952a3, #4d50a2, #504fa2, #544fa1, #574ea1, #5a4ea1, #5e4ea1, #614da0, #644da0);; -fx-background-radius: 15;">
+               <children>
+                  <Label layoutX="82.0" layoutY="13.0" prefHeight="33.0" prefWidth="205.0" text="Walk in clients" textFill="WHITE">
+                     <font>
+                        <Font name="SansSerif Bold" size="29.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Pane layoutX="275.0" layoutY="523.0" prefHeight="47.0" prefWidth="249.0" styleClass="buttonTwo" stylesheets="@styles.css" />
+            <Label layoutX="419.0" layoutY="368.0" text="Time simulator" />
+            <TextField fx:id="age" layoutX="525.0" layoutY="148.0" onAction="#age_Input" prefHeight="27.0" prefWidth="72.0" stylesheets="@styles.css">
+               <styleClass>
+                  <String fx:value="buttonOne" />
+                  <String fx:value="shadows" />
+               </styleClass>
+            </TextField>
+            <Label layoutX="525.0" layoutY="131.0" text="Age" />
          </children>
       </AnchorPane>
    </children>

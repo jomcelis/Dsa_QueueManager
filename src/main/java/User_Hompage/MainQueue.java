@@ -12,6 +12,7 @@ import java.util.*;
 
 public class MainQueue {
     private final PriorityQueue<String> priorityQueue = new PriorityQueue<>();
+
     private List<PriorityItem> priorityItems = new ArrayList<>();
 
     private static final String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
@@ -94,7 +95,8 @@ public class MainQueue {
 
     @FXML
     private Label currentReservation;
-
+    @FXML
+    private TextField age;
     @FXML
     Label currentTime;
 
@@ -144,22 +146,29 @@ public class MainQueue {
     }
 
 
-    @FXML
     public void handleAddButtonAction() {
         // Extract input data from your UI components
         String first = firstName_Input.getText();
         String last = lastName_Input.getText();
         String contact = number_Input.getText();
+        String ages = age.getText();
         String reason = choiceBox.getValue();
 
         // Check if any of the input fields are empty
-        if (first.isEmpty() || last.isEmpty() || contact.isEmpty() || reason == null) {
-            error_message("Wrong/Missing input");
+        if (first.isEmpty()|| !isValidInput(first))  {
+            error_message("Invalid input first name");
+        }else if(last.isEmpty() || !isValidInput(last)){
+            error_message("Invalid input last name");
+        }else if(contact.isEmpty()|| !isValidContactNumber(contact)){
+            error_message("Invalid input contact number");
+        }else if(reason == null ){
+            error_message("Invalid reason");
+        }else if(date == null ){
+            error_message("Please choose time");
+        }else if(age == null || !isValidInputAge(ages)){
+            error_message("Invalid input age");
         } else {
             // Use regular expressions to check for special characters in first name, last name, and contact
-            if (!isValidInput(first) || !isValidInput(last) || !isValidContactNumber(contact)) {
-                error_message("Invalid/Missing inputs.");
-            } else {
                 try {
                     long contactNumber = Long.parseLong(contact);
                     int priority;
@@ -190,14 +199,13 @@ public class MainQueue {
                     }
 
                     // Create a formatted input string
-                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + reason;
+                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + ages + " , " + reason;
 
                     // Add the item to the priority queue with the determined priority
                     priorityQueue.add(input, priority);
 
                     // Refresh the output in your UI
                     refreshOutput();
-                    //handleLoadFileAction();
 
                     // Show a success message
                     JOptionPane.showMessageDialog(null, "Successful booking!", "Success", JOptionPane.INFORMATION_MESSAGE);
@@ -206,12 +214,13 @@ public class MainQueue {
                 }
             }
         }
-    }
-
-
 
     private boolean isValidInput(String input) {
         return input.matches("^[a-zA-Z0-9]*$");
+    }
+
+    private boolean isValidInputAge(String input) {
+        return input.matches("^[0-9]*$");
     }
 
     private boolean isValidContactNumber(String contact) {
@@ -223,19 +232,6 @@ public class MainQueue {
     public void addButton_Click(ActionEvent event) {
 
         // refreshOutput();
-    }
-    @FXML
-    public void HandleWalkInButtonAction(ActionEvent event) {
-
-        String first = firstName_Input.getText();
-        String last = lastName_Input.getText();
-        String contact = number_Input.getText();
-        String reason = choiceBox.getValue();
-        String input = first + " , " + last + " , " + contact + " , "+ reason;
-        priorityQueue.add(input, 5); // Call the method to add the item to the priority queue
-        System.out.println(priorityQueue);
-
-        refreshOutput();
     }
 
     @FXML
@@ -252,21 +248,67 @@ public class MainQueue {
     public void number_Input(ActionEvent event) {
 
     }
+    @FXML
+    public void age_Input(ActionEvent event) {
+
+    }
 
     @FXML
     public void handleRemoveButtonAction() {
-        try {
-            String earliestTime = priorityQueue.peek().split(",")[3].trim();
-            priorityQueue.remove(); // Remove from the priority queue
-            removeItemsByTime(earliestTime); // Remove from the file
+        String selectedTime = date; // Get the selected time from the radio buttons
+
+        boolean itemRemovedFromFile = removeItemFromFile(selectedTime);
+
+        if (itemRemovedFromFile || priorityQueue.isEmpty()) {
+            if (!priorityQueue.isEmpty()) {
+                priorityQueue.remove(); // Remove from the priority queue
+            }
 
             refreshOutput();
-            JOptionPane.showMessageDialog(null, "Removed the earliest item at " + earliestTime, "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-        } catch (NoSuchElementException e) {
-            error_message("Priority Queue is empty.");
+            if (itemRemovedFromFile) {
+                JOptionPane.showMessageDialog(null, "Removed item with time " + selectedTime, "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                JOptionPane.showMessageDialog(null, "No matching item found in the file. Removed the earliest item in the queue.", "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+            }
         }
 
         updateLabelsFromFileData();
+    }
+
+
+
+    private boolean removeItemFromFile(String targetTime) {
+        File inputFile = new File(filePath);
+        File tempFile = new File("temp.txt");
+        boolean itemRemovedFromFile = false;
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(inputFile));
+             BufferedWriter writer = new BufferedWriter(new FileWriter(tempFile))) {
+
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 5) {
+                    String itemTime = parts[3].trim();
+                    if (itemTime.equals(targetTime)) {
+                        // An item with the same time as the targetTime was found and removed from the file
+                        itemRemovedFromFile = true;
+                    } else {
+                        writer.write(line + System.getProperty("line.separator"));
+                    }
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        if (inputFile.delete()) {
+            if (!tempFile.renameTo(inputFile)) {
+                System.err.println("Error renaming temp file.");
+            }
+        }
+
+        return itemRemovedFromFile;
     }
 
     private void updateLabelsFromFileData() {
