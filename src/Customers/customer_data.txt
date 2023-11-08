@@ -1,1 +1,6 @@
-Blake,Celis,12345678901,11:00 AM,General check up
+Reese,Celis,12345678901,9:00 AM,General check up
+The,Weeknd,12345678901,10:00 AM,Tooth Extraction
+Post,Malone,12345678901,11:00 AM,Tooth Extraction
+Baste,Martzel,12345678901,1:00 PM,Tooth Extraction
+Suppa,hawt,12345678901,2:00 PM,Tooth Extraction
+jap,abelgap,12345678901,3:00 PM,Tooth Extraction

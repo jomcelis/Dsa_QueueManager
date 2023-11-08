@@ -12,9 +12,6 @@ import java.util.*;
 
 public class MainQueue {
     private final PriorityQueue<String> priorityQueue = new PriorityQueue<>();
-
-    private List<PriorityItem> priorityItems = new ArrayList<>();
-
     private static final String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
     private String date;
 
@@ -145,7 +142,7 @@ public class MainQueue {
         updateReservationLabels(); // Call the method to initially update the reservation labels
     }
 
-
+    @FXML
     public void handleAddButtonAction() {
         // Extract input data from your UI components
         String first = firstName_Input.getText();
@@ -203,7 +200,7 @@ public class MainQueue {
 
                     // Add the item to the priority queue with the determined priority
                     priorityQueue.add(input, priority);
-
+                    saveInputToFile(input);
                     // Refresh the output in your UI
                     refreshOutput();
 
@@ -255,33 +252,24 @@ public class MainQueue {
 
     @FXML
     public void handleRemoveButtonAction() {
-        String selectedTime = date; // Get the selected time from the radio buttons
-
-        boolean itemRemovedFromFile = removeItemFromFile(selectedTime);
-
-        if (itemRemovedFromFile) {
-            if(!priorityQueue.isEmpty()) {
-                priorityQueue.remove(); // Remove from the priority queue
-            }
-            refreshOutput();
-        }else if(!itemRemovedFromFile) {
-            if(!priorityQueue.isEmpty()){
+        String removedItem = "";
+        try {
+            if(removeItemFromFile(date)){
+                removeItemFromFile(date);
+            }else if(!removeItemFromFile(date)){
                 priorityQueue.remove();
-            }else {
-                JOptionPane.showMessageDialog(null, "there are no people on queue");
             }
-            ;
+
+
+            updateReservationLabels();
+            updateLabelsFromFileData();
+            //updateCurrentReservation();
+            refreshOutput();
+            JOptionPane.showMessageDialog(null, "Customer removed from Queue", "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+        } catch (NoSuchElementException e) {
+            error_message("Priority Queue is empty.");
         }
-
-            if (itemRemovedFromFile) {
-                JOptionPane.showMessageDialog(null, "Removed item with time " + selectedTime, "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                JOptionPane.showMessageDialog(null, "No matching item found in the file. Removed the earliest item in the queue.", "Item Removed", JOptionPane.INFORMATION_MESSAGE);
-            }
-        updateLabelsFromFileData();
         }
-
-
 
 
     private boolean removeItemFromFile(String targetTime) {
@@ -339,22 +327,11 @@ public class MainQueue {
 
     @FXML
     public void handleEditButtonAction() {
+        System.out.println(removeItemFromFile(date));
         refreshOutput();
         updateLabelsFromFileData();
-        handleLoadFileAction();
+        //handleLoadFileAction();
 
-        /*
-        String input = JOptionPane.showInputDialog(null, "Enter new item:");
-        int priority = Integer.parseInt(JOptionPane.showInputDialog(null, "Enter new priority:"));
-        try {
-            priorityQueue.remove();
-            priorityQueue.add(input, priority);
-            refreshOutput();
-        } catch (NoSuchElementException e) {
-            error_message("Priority Queue is empty.");
-        }
-
-         */
     }
 
     private void refreshOutput() {
@@ -605,7 +582,20 @@ public class MainQueue {
     void refreshBtn_Click(ActionEvent event) {
     refreshOutput();
     updateLabelsFromFileData();
+    updateReservationLabels();
 
+    }
+
+    private void saveInputToFile(String input) {
+        String fileName = "queue_items.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            writer.write(input);
+            writer.newLine();
+        } catch (IOException e) {
+            // Handle the exception, e.g., display an error message or log the error
+            e.printStackTrace();
+        }
     }
 
 
