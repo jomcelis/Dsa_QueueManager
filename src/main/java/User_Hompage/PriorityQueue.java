@@ -13,6 +13,7 @@ public class PriorityQueue<E extends Comparable<E>> {
     }
 
     public void add(E item, int priority) {
+
         // Create a new node with the item and priority
         QueueNode<E> newNode = new QueueNode<>(item, priority);
 
@@ -21,6 +22,7 @@ public class PriorityQueue<E extends Comparable<E>> {
 
         // Heapify the queue to maintain the heap property.
         heapifyUp(queue.size() - 1);
+
     }
 
     public E remove() {
@@ -154,4 +156,5 @@ public class PriorityQueue<E extends Comparable<E>> {
             add(items.get(i), priorities.get(i));
         }
     }
+
 }

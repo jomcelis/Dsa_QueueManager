@@ -89,3 +89,37 @@ Jomair , celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
 Jomair , celis , 12345678901 , 9:00 AM , 20 , Consultation , 1
 Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
 Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Teeth whitening , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+reese , Celis , 12345678901 , 11:00 AM , 20 , Teeth whitening , 1
+reese , witherspoon , 12345678901 , 11:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 9:00 AM , 20 , General check up , 1
+John , Celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomari , celis , 12345678901 , 10:00 AM , 19 , General check up , 1
+Jomari , celis , 12345678901 , 9:00 AM , 19 , General check up , 1
+Jomari , celis , 12345678901 , 9:00 AM , 19 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 9:00 AM , 20 , General check up , 1
+Swaa , Celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 9:00 AM , 12345678901 , General check up , 1
+Jomari , Celis , 12345678901 , 9:00 AM , 12345678901 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 9:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , celis , 12345678901 , 9:00 AM , 20 , General check up , 1
+Sophie , celis , 12345678901 , 10:00 AM , 20 , X-Ray , 1
+Sophie , celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , celis , 12345678901 , 10:00 AM , 20 , X-Ray , 1

@@ -105,7 +105,7 @@
         Label currentTime;
         @FXML
         private Label warning;
-    
+        private boolean CheckEmergency;
     
         @FXML
         private void updateCurrentTime() {
@@ -120,6 +120,7 @@
         @FXML
         private void initialize() {
             ToggleGroup dateToggleGroup = new ToggleGroup();
+            FileCreation();
             originalQueue = new PriorityQueue<>();
             nineAm.setToggleGroup(dateToggleGroup);
             tenAm.setToggleGroup(dateToggleGroup);
@@ -229,11 +230,9 @@
                     // If priority queue has items, enable the radio buttons
                     disableRadioButtons(false);
                 }
-                emergency_Click();
-                if(priorityQueue.isEmpty()){
-                    warning.setText("");
-                }
             }
+            emergency_Click();
+            updateEmergencyLabel();
         }
     
     
@@ -284,20 +283,26 @@
         }
         @FXML
         public void handleRemoveButtonAction() {
+            updateEmergencyLabel();
             String removedItem = "";
             try {
-                if(removeItemFromFile(date)){
-                    removeItemFromFile(date);
-                }else if(!removeItemFromFile(date)){
-                    priorityQueue.remove();
-                }
-    
-    
+                    if(CheckEmergency) {
+                        priorityQueue.remove();
+                        CheckEmergency=false;
+                        }else{
+                            if (removeItemFromFile(date)) {
+                                removeItemFromFile(date);
+                            } else if (!removeItemFromFile(date)) {
+                                priorityQueue.remove();
+                            }
+                        }
+
+
                 updateReservationLabels();
                 updateLabelsFromFileData();
                 updateEmergencyLabel();
                 refreshOutput();
-                JOptionPane.showMessageDialog(null, "Customer removed from Queue", "Item Removed", JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Client removed from Queue", "Dequeue", JOptionPane.INFORMATION_MESSAGE);
             } catch (NoSuchElementException e) {
                 error_message("Priority Queue is empty.");
             }
@@ -312,6 +317,7 @@
                 // If priority queue has items, enable the radio buttons
                 disableRadioButtons(false);
             }
+
             }
         private void emergency_Click() {
             try {
@@ -324,11 +330,15 @@
                         String priority = parts[6].trim(); // Assuming the priority is at index 4 in the 'parts' array
                         String reason = parts[5].trim();
                         if (priority.equals("3")) {
+                            CheckEmergency = true;
                             emergencyLabel.setText(firstName + " " + lastName + " " + reason);
+
                             // You might want to remove the item from the priority queue if it is sent to the emergency label
                             // priorityQueue.remove();
                         } else {
+                            CheckEmergency = false;
                             emergencyLabel.setText("No emergencies queued");
+
                         }
                     } else {
                         emergencyLabel.setText(emergencyItem);
@@ -543,6 +553,7 @@
                         String reason = parts[5].trim();
                         if (priority.equals("3")) {
                             emergencyLabel.setText(firstName + " " + lastName + " " + reason);
+
                             // You might want to remove the item from the priority queue if it is sent to the emergency label
                             // priorityQueue.remove();
                         } else {
@@ -671,13 +682,13 @@
                 }
             }
         }
-    
-    
-    
+
+
+
         private void refreshOutput(PriorityQueue originalQueue, String s) {
         }
-    
-    
+
+
         private String getTimeSlotByIndex(int slotIndex) {
             switch (slotIndex) {
                 case 0: return "9:00 AM";
@@ -757,6 +768,7 @@
         refreshOutput();
         updateLabelsFromFileData();
         updateReservationLabels();
+        updateEmergencyLabel();
     
         }
     
@@ -771,6 +783,20 @@
                 e.printStackTrace();
             }
         }
-    
-    
-    }
+
+        public void FileCreation(){
+                String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
+                File file = new File(filePath);
+
+                try {
+                    if (file.createNewFile()) {
+                        System.out.println("File created: " + file.getName());
+                    } else {
+                        System.out.println("File already exists.");
+                    }
+                } catch (IOException e) {
+                    System.out.println("An error occurred while creating the file.");
+                    e.printStackTrace();
+                }
+            }
+        }
