@@ -203,6 +203,7 @@ public class MainQueue {
                     String input = first + " , " + last + " , " + contact + " , " + date + " , " + ages + " , " + reason;
 
                     // Add the item to the priority queue with the determined priority
+                    addData(first,last,contact,date,reason);
                     priorityQueue.add(input, priority);
                     saveInputToFile(input);
                     // Refresh the output in your UI
@@ -225,6 +226,8 @@ public class MainQueue {
                 disableRadioButtons(false);
             }
             }
+
+
         }
 
     private boolean isValidInput(String input) {
@@ -439,13 +442,14 @@ public class MainQueue {
 
 
 
-    void addData(String name, String lastName, String contactNumber, String date , String reason) {
+    void addData(String name, String lastName, String contactNumber, String date, String reason) {
+        String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\PriorityQueue.txt";
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
             writer.write(name + ",");
             writer.write(lastName + ",");
             writer.write(contactNumber + ",");
             writer.write(date + ",");
-            writer.write(reason + "\r\n");
+            writer.write(reason + System.getProperty("line.separator"));
         } catch (IOException ex) {
             ex.printStackTrace(); // Handle or log the exception properly
         }
