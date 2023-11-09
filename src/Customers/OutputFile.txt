@@ -1,0 +1,12 @@
+Reservations:
+Jomari,Celis,12345678901,10:00 AM,General check up
+Jomar,Celis,12345678901,11:00 AM,General check up
+
+Priority Queue:
+Marie,Celis,12345678901,10:00 AM,General check up
+Reese,Celis,12345678901,10:00 AM,General check up
+Jomar,Celis,12345678901,11:00 AM,General check up
+Jomar,Celis,12345678901,11:00 AM,General check up
+Jomar,Celis,12345678901,11:00 AM,General check up
+
+Output: 2023-11-09
