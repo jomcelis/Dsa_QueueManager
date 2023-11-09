@@ -123,3 +123,10 @@ Jomari , celis , 12345678901 , 10:00 AM , 20 , General check up , 1
 Jomari , celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
 Jomari , celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
 Jomari , celis , 12345678901 , 10:00 AM , 20 , X-Ray , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1

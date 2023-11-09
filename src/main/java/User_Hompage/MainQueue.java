@@ -156,7 +156,7 @@
         }
     
         @FXML
-        public void handleAddButtonAction() {
+        public void handleAddButtonAction() throws IOException {
             // Extract input data from your UI components
             String first = firstName_Input.getText();
             String last = lastName_Input.getText();
@@ -208,6 +208,7 @@
     
                     // Add the item to the priority queue with the determined priority
                     addData(first, last, contact, date, reason);
+                    //addData2(first, last, contact, date, reason);
                     priorityQueue.add(input, priority);
                     saveInputToFile(input);
                     // Refresh the output in your UI
@@ -233,6 +234,7 @@
             }
             emergency_Click();
             updateEmergencyLabel();
+            //printTemporaryQueue();
         }
     
     
@@ -286,7 +288,11 @@
             updateEmergencyLabel();
             String removedItem = "";
             try {
-                    if(CheckEmergency) {
+                PrintWriter writer = new PrintWriter("C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt");
+                writer.print("");
+                writer.close();
+
+                if(CheckEmergency) {
                         priorityQueue.remove();
                         CheckEmergency=false;
                         }else{
@@ -303,15 +309,16 @@
                 updateEmergencyLabel();
                 refreshOutput();
                 JOptionPane.showMessageDialog(null, "Client removed from Queue", "Dequeue", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NoSuchElementException e) {
+            } catch (NoSuchElementException | FileNotFoundException e) {
                 error_message("Priority Queue is empty.");
+                e.printStackTrace();
             }
-    
+
             if (!priorityQueue.isEmpty()) {
                 disableRadioButtons(true);
                 refreshOutput();
                 // If priority queue is empty, disable the radio buttons
-    
+
             } else {
                 refreshOutput();
                 // If priority queue has items, enable the radio buttons
@@ -508,6 +515,20 @@
                 ex.printStackTrace(); // Handle or log the exception properly
             }
         }
+
+        void addData2(String name, String lastName, String contactNumber, String date, String reason) {
+            String filePath2 = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath2, true))) {
+                writer.write(name + ",");
+                writer.write(lastName + ",");
+                writer.write(contactNumber + ",");
+                writer.write(date + ",");
+                writer.write(reason + System.getProperty("line.separator"));
+            } catch (IOException ex) {
+                ex.printStackTrace(); // Handle or log the exception properly
+            }
+        }
+
     
         @FXML
         public void updateCurrentReservation() {
@@ -575,32 +596,50 @@
         }
     
         private void printToFile() {
-            String reservationFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
+            String reservationFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Reservations.txt";
             String priorityQueueFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\PriorityQueue.txt";
             String outputFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\OutputFile.txt";
+
     
             try {
                 File reservationFile = new File(reservationFilePath);
                 File priorityQueueFile = new File(priorityQueueFilePath);
-    
+
                 if (!reservationFile.exists()) {
                     reservationFile.createNewFile();
                 }
                 if (!priorityQueueFile.exists()) {
                     priorityQueueFile.createNewFile();
                 }
-    
+
                 BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
                 writer.write("Reservations:\n");
                 writeDataFromFile(reservationFilePath, writer);
                 writer.write("\nPriority Queue:\n");
                 writeDataFromFile(priorityQueueFilePath, writer);
                 writer.write("\nDate today: " + LocalDate.now() + "\n");
+
                 writer.close();
             } catch (IOException ex) {
                 ex.printStackTrace(); // Handle or log the exception properly
             }
         }
+/*
+        private void printTemporaryQueue() throws IOException {
+            String temporaryQueueFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
+            File tempQueueFile = new File(temporaryQueueFilePath);
+            if(!tempQueueFile.exists()){
+                tempQueueFile.createNewFile();
+            }
+            if(!priorityQueue.isEmpty()){
+                BufferedWriter writer2 = new BufferedWriter(new FileWriter(tempQueueFile));
+                writeDataFromFile(temporaryQueueFilePath,writer2);
+            }else{
+                tempQueueFile.delete();
+            }
+        }
+        */
+
     
         private void writeDataFromFile(String filePath, BufferedWriter writer) {
             try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -685,20 +724,16 @@
 
 
 
-        private void refreshOutput(PriorityQueue originalQueue, String s) {
-        }
-
-
         private String getTimeSlotByIndex(int slotIndex) {
-            switch (slotIndex) {
-                case 0: return "9:00 AM";
-                case 1: return "10:00 AM";
-                case 2: return "11:00 AM";
-                case 3: return "1:00 PM";
-                case 4: return "2:00 PM";
-                case 5: return "3:00 PM";
-                default: return "";
-            }
+            return switch (slotIndex) {
+                case 0 -> "9:00 AM";
+                case 1 -> "10:00 AM";
+                case 2 -> "11:00 AM";
+                case 3 -> "1:00 PM";
+                case 4 -> "2:00 PM";
+                case 5 -> "3:00 PM";
+                default -> "";
+            };
         }
     
     
@@ -771,18 +806,31 @@
         updateEmergencyLabel();
     
         }
-    
-        private void saveInputToFile(String input) {
-            String fileName = "queue_items.txt";
-    
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-                writer.write(input);
-                writer.newLine();
-            } catch (IOException e) {
-                // Handle the exception, e.g., display an error message or log the error
-                e.printStackTrace();
+
+        private void saveInputToFile(String input) throws IOException {
+            String fileName = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
+
+            File file = new File(fileName);
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fileWriter = new FileWriter(fileName, false);
+            BufferedWriter writer = new BufferedWriter(fileWriter);
+
+            try {
+                if (!priorityQueue.isEmpty()) {
+                    writer.write(input);
+                    writer.newLine();
+                    writer.flush();
+                }
+            } finally {
+                writer.close();
+                fileWriter.close();
             }
         }
+
 
         public void FileCreation(){
                 String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\customer_data.txt";
@@ -799,4 +847,6 @@
                     e.printStackTrace();
                 }
             }
+
+
         }
