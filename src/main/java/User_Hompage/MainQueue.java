@@ -224,12 +224,15 @@
                     warning.setText("You can't change time if queue isn't empty.");
                     // If priority queue is not empty, disable the radio buttons
                 } else {
+
                     refreshOutput();
                     // If priority queue has items, enable the radio buttons
                     disableRadioButtons(false);
-                    warning.setText("");
                 }
                 emergency_Click();
+                if(priorityQueue.isEmpty()){
+                    warning.setText("");
+                }
             }
         }
     
