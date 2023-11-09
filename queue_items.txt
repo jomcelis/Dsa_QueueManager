@@ -77,3 +77,15 @@ Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
 Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
 Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
 Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 11:00 AM , 20 , Severe gum bleeding , 3
+Jomair , celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomair , celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Braces , 1
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Consultation , 1
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Severe gum bleeding , 3
+Jomair , celis , 12345678901 , 9:00 AM , 20 , Consultation , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , General check up , 1
+Jomari , Celis , 12345678901 , 10:00 AM , 20 , Severe gum bleeding , 3
