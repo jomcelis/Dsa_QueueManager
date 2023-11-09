@@ -105,7 +105,8 @@ public class MainQueue {
 
 
 
-    private String[] choices ={"General check up","Tooth Extraction","ramen","X-Ray", "Consultation"};
+    private final String[] choices ={"General check up","Tooth Extraction","Teeth whitening","X-Ray", "Consultation", "Braces"};
+
     private PriorityQueue originalQueue;
     @FXML
     private void initialize() {
@@ -117,6 +118,8 @@ public class MainQueue {
         onePM.setToggleGroup(dateToggleGroup);
         twoPm.setToggleGroup(dateToggleGroup);
         threePm.setToggleGroup(dateToggleGroup);
+        disableRadioButtons(false);
+
 
         dateToggleGroup.selectedToggleProperty().addListener((observable, oldValue, newValue) -> {
             if (dateToggleGroup.getSelectedToggle() != null) {
@@ -144,6 +147,7 @@ public class MainQueue {
 
     @FXML
     public void handleAddButtonAction() {
+
         // Extract input data from your UI components
         String first = firstName_Input.getText();
         String last = lastName_Input.getText();
@@ -209,6 +213,17 @@ public class MainQueue {
                 } catch (NumberFormatException e) {
                     error_message("Invalid contact number. Please enter a non-negative number.");
                 }
+
+            if (!priorityQueue.isEmpty()) {
+                disableRadioButtons(true);
+                refreshOutput();
+                // If priority queue is empty, disable the radio buttons
+
+            } else {
+                refreshOutput();
+                // If priority queue has items, enable the radio buttons
+                disableRadioButtons(false);
+            }
             }
         }
 
@@ -222,6 +237,14 @@ public class MainQueue {
 
     private boolean isValidContactNumber(String contact) {
         return contact.matches("^\\d{11}$");
+    }
+    private void disableRadioButtons(boolean disable) {
+        nineAm.setDisable(disable);
+        tenAm.setDisable(disable);
+        elevenAm.setDisable(disable);
+        onePM.setDisable(disable);
+        twoPm.setDisable(disable);
+        threePm.setDisable(disable);
     }
 
 
@@ -268,6 +291,17 @@ public class MainQueue {
             JOptionPane.showMessageDialog(null, "Customer removed from Queue", "Item Removed", JOptionPane.INFORMATION_MESSAGE);
         } catch (NoSuchElementException e) {
             error_message("Priority Queue is empty.");
+        }
+
+        if (!priorityQueue.isEmpty()) {
+            disableRadioButtons(true);
+            refreshOutput();
+            // If priority queue is empty, disable the radio buttons
+
+        } else {
+            refreshOutput();
+            // If priority queue has items, enable the radio buttons
+            disableRadioButtons(false);
         }
         }
 
@@ -335,7 +369,6 @@ public class MainQueue {
     }
 
     private void refreshOutput() {
-
         outputArea.setText(priorityQueue.toString());
 
 
@@ -539,37 +572,57 @@ public class MainQueue {
 
     @FXML
     void nineAm_Action(ActionEvent event) {
-
-        refreshOutput();
+        if (!nineAm.isDisabled()) {
+            refreshOutput();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot change time while the queue is not empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @FXML
     void tenAm_Action(ActionEvent event) {
-        //filterPriorityQueueByTime(date);
-        refreshOutput();
+        if (!tenAm.isDisabled()) {
+            refreshOutput();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot change time while the queue is not empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
     @FXML
     void elevenAm_Action(ActionEvent event) {
 
-        refreshOutput();
+        if (!elevenAm.isDisabled()) {
+            refreshOutput();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot change time while the queue is not empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @FXML
     void onePM_Action(ActionEvent event) {
+        if (!onePM.isDisabled()) {
+            refreshOutput();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot change time while the queue is not empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
 
-        refreshOutput();
     }
 
     @FXML
     void twoPm_Action(ActionEvent event) {
-
-        refreshOutput();
+        if (!twoPm.isDisabled()) {
+            refreshOutput();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot change time while the queue is not empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @FXML
     void threePm_Action(ActionEvent event) {
-
-        refreshOutput();
+        if (!threePm.isDisabled()) {
+            refreshOutput();
+        } else {
+            JOptionPane.showMessageDialog(null, "Cannot change time while the queue is not empty.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
     }
 
     @FXML
