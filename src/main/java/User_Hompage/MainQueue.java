@@ -1,11 +1,16 @@
     package User_Hompage;
-    
+
     import com.example.dsa_final.Main;
+    import javafx.animation.ScaleTransition;
     import javafx.collections.FXCollections;
     import javafx.event.ActionEvent;
     import javafx.fxml.FXML;
     import javafx.scene.control.*;
-    
+    import javafx.scene.input.MouseEvent;
+    import javafx.scene.text.Font;
+    import javafx.scene.text.FontWeight;
+    import javafx.util.Duration;
+
     import javax.swing.*;
     import java.io.*;
     import java.time.LocalDate;
@@ -119,6 +124,7 @@
         private PriorityQueue originalQueue;
         @FXML
         private void initialize() {
+            outputArea.setFont(Font.font("System", FontWeight.SEMI_BOLD,12));
             ToggleGroup dateToggleGroup = new ToggleGroup();
             FileCreation();
             originalQueue = new PriorityQueue<>();
@@ -157,6 +163,13 @@
     
         @FXML
         public void handleAddButtonAction() throws IOException {
+
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), addButton);
+            scaleTransition.setByX(0.1);
+            scaleTransition.setByY(0.1);
+            scaleTransition.setAutoReverse(true);
+            scaleTransition.play();
+
             // Extract input data from your UI components
             String first = firstName_Input.getText();
             String last = lastName_Input.getText();
@@ -204,7 +217,7 @@
                     }
     
                     // Create a formatted input string
-                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + ages + " , " + reason + " , "+ priority;
+                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + ages + " , " + reason + " , " + priority + "Walk-in";
     
                     // Add the item to the priority queue with the determined priority
                     addData(first, last, contact, date, reason);
@@ -285,6 +298,13 @@
         }
         @FXML
         public void handleRemoveButtonAction() {
+
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), removeButton);
+            scaleTransition.setByX(0.1);
+            scaleTransition.setByY(0.1);
+            scaleTransition.setAutoReverse(true);
+            scaleTransition.play();
+
             updateEmergencyLabel();
             String removedItem = "";
             try {
@@ -403,17 +423,6 @@
             updateReservationLabels();
         }
     
-    
-        @FXML
-        public void handlePeekButtonAction() {
-            try {
-                String peekedItem = priorityQueue.peek();
-                JOptionPane.showMessageDialog(null, "Peek: " + peekedItem, "Peeked Item", JOptionPane.INFORMATION_MESSAGE);
-            } catch (NoSuchElementException e) {
-                error_message("Priority Queue is empty.");
-            }
-        }
-    
         @FXML
         public void handleEditButtonAction() {
             System.out.println(removeItemFromFile(date));
@@ -422,7 +431,7 @@
             //handleLoadFileAction();
     
         }
-    
+
         private void refreshOutput() {
             StringBuilder filteredOutput = new StringBuilder();
             for (String item : priorityQueue.getItems()) {
@@ -592,6 +601,11 @@
         }
         @FXML
         private void print_Click() {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), print);
+            scaleTransition.setByX(0.1);
+            scaleTransition.setByY(0.1);
+            scaleTransition.setAutoReverse(true);
+            scaleTransition.play();
             printToFile();
         }
     
@@ -624,23 +638,7 @@
                 ex.printStackTrace(); // Handle or log the exception properly
             }
         }
-/*
-        private void printTemporaryQueue() throws IOException {
-            String temporaryQueueFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
-            File tempQueueFile = new File(temporaryQueueFilePath);
-            if(!tempQueueFile.exists()){
-                tempQueueFile.createNewFile();
-            }
-            if(!priorityQueue.isEmpty()){
-                BufferedWriter writer2 = new BufferedWriter(new FileWriter(tempQueueFile));
-                writeDataFromFile(temporaryQueueFilePath,writer2);
-            }else{
-                tempQueueFile.delete();
-            }
-        }
-        */
 
-    
         private void writeDataFromFile(String filePath, BufferedWriter writer) {
             try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
                 String line;
@@ -794,12 +792,22 @@
     
         @FXML
         void backButton_Click(ActionEvent event) throws IOException {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), backButton);
+            scaleTransition.setByX(0.1);
+            scaleTransition.setByY(0.1);
+            scaleTransition.setAutoReverse(true);
+            scaleTransition.play();
             Main m = new Main();
             m.changeScene("hello-view.fxml");
         }
     
         @FXML
         void refreshBtn_Click(ActionEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), refreshBtn);
+            scaleTransition.setByX(0.1);
+            scaleTransition.setByY(0.1);
+            scaleTransition.setAutoReverse(true);
+            scaleTransition.play();
         refreshOutput();
         updateLabelsFromFileData();
         updateReservationLabels();
@@ -847,6 +855,88 @@
                     e.printStackTrace();
                 }
             }
+
+            //Animations
+
+        @FXML
+        public void OnMouseEnterAdd (MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), addButton);
+            scaleTransition.setToX(1.05); // Scale X by 10%
+            scaleTransition.setToY(1.05); // Scale Y by 10%
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseExitAdd(MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), addButton);
+            scaleTransition.setToX(1.0); // Restore X to its original size
+            scaleTransition.setToY(1.0); // Restore Y to its original size
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseEnterRemove (MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), removeButton);
+            scaleTransition.setToX(1.05); // Scale X by 10%
+            scaleTransition.setToY(1.05); // Scale Y by 10%
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseExitRemove(MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), removeButton);
+            scaleTransition.setToX(1.0); // Restore X to its original size
+            scaleTransition.setToY(1.0); // Restore Y to its original size
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseEnterRefresh (MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), refreshBtn);
+            scaleTransition.setToX(1.05); // Scale X by 10%
+            scaleTransition.setToY(1.05); // Scale Y by 10%
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseExitRefresh(MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), refreshBtn);
+            scaleTransition.setToX(1.0); // Restore X to its original size
+            scaleTransition.setToY(1.0); // Restore Y to its original size
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseEnterBack (MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), backButton);
+            scaleTransition.setToX(1.05); // Scale X by 10%
+            scaleTransition.setToY(1.05); // Scale Y by 10%
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseExitBack(MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), backButton);
+            scaleTransition.setToX(1.0); // Restore X to its original size
+            scaleTransition.setToY(1.0); // Restore Y to its original size
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseEnterPrint (MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), print);
+            scaleTransition.setToX(1.05); // Scale X by 10%
+            scaleTransition.setToY(1.05); // Scale Y by 10%
+            scaleTransition.play();
+        }
+
+        @FXML
+        public void OnMouseExitPrint(MouseEvent event) {
+            ScaleTransition scaleTransition = new ScaleTransition(Duration.millis(200), print);
+            scaleTransition.setToX(1.0); // Restore X to its original size
+            scaleTransition.setToY(1.0); // Restore Y to its original size
+            scaleTransition.play();
+        }
 
 
         }

@@ -8,3 +8,4 @@ Jomari,Celis,12345678901,9:00 AM,Braces
 Blake,Celis,12345678901,9:00 AM,Severe gum bleeding
 Jomari,Celis,12345678901,10:00 AM,General check up
 Jomari,celis,12345678901,10:00 AM,General check up
+Jomari,Celis,12345678901,10:00 AM,General check up

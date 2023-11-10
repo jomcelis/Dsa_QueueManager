@@ -28,81 +28,111 @@
                </image>
             </ImageView>
 
-            <TextField fx:id="firstName_Input" layoutX="415.0" layoutY="120.0" onAction="#firstName_Input" prefHeight="27.0" prefWidth="182.0" styleClass="buttonThree" stylesheets="@styles.css" />
-            <Button fx:id="addButton" layoutX="416.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleAddButtonAction" prefHeight="27.0" prefWidth="368.0" styleClass="buttonTwo" stylesheets="@styles.css" text="Enqueue" textFill="WHITE">
+            <TextField fx:id="firstName_Input" layoutX="415.0" layoutY="120.0" onAction="#firstName_Input" prefHeight="27.0" prefWidth="182.0" styleClass="buttonThree" stylesheets="@styles.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Button fx:id="addButton" layoutX="416.0" layoutY="274.0" mnemonicParsing="false" onAction="#handleAddButtonAction" onMouseEntered="#OnMouseEnterAdd" onMouseExited="#OnMouseExitAdd" prefHeight="27.0" prefWidth="368.0" styleClass="buttonTwo" stylesheets="@styles.css" text="Enqueue" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="Montserrat Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="deleteButton" layoutX="415.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" prefHeight="27.0" prefWidth="368.0" styleClass="buttonTwo" stylesheets="@styles.css" text="Dequeue" textFill="WHITE">
+            <Button fx:id="removeButton" layoutX="415.0" layoutY="312.0" mnemonicParsing="false" onAction="#handleRemoveButtonAction" onMouseEntered="#OnMouseEnterRemove" onMouseExited="#OnMouseExitRemove" prefHeight="27.0" prefWidth="368.0" styleClass="buttonTwo" stylesheets="@styles.css" text="Dequeue" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="Montserrat Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font></Button>
             <Label layoutX="415.0" layoutY="99.0" text="Name:">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font name="System Regular" size="12.0" />
                </font></Label>
-            <TextField fx:id="lastName_Input" layoutX="602.0" layoutY="120.0" onAction="#lastName_Input" prefHeight="27.0" prefWidth="182.0" styleClass="buttonThree" stylesheets="@styles.css" />
+            <TextField fx:id="lastName_Input" layoutX="602.0" layoutY="120.0" onAction="#lastName_Input" prefHeight="27.0" prefWidth="182.0" styleClass="buttonThree" stylesheets="@styles.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label layoutX="603.0" layoutY="99.0" text="Last name:">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font name="System Regular" size="12.0" />
                </font></Label>
-            <TextField fx:id="number_Input" layoutX="415.0" layoutY="170.0" prefHeight="27.0" prefWidth="102.0" styleClass="buttonThree" stylesheets="@styles.css" />
+            <TextField fx:id="number_Input" layoutX="415.0" layoutY="170.0" prefHeight="27.0" prefWidth="102.0" styleClass="buttonThree" stylesheets="@styles.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
             <Label layoutX="415.0" layoutY="153.0" text="Contact:">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font name="System Regular" size="12.0" />
                </font></Label>
-            <ChoiceBox fx:id="choiceBox" layoutX="602.0" layoutY="170.0" prefHeight="27.0" prefWidth="182.0" styleClass="buttonThree" stylesheets="@styles.css" />
+            <ChoiceBox fx:id="choiceBox" layoutX="602.0" layoutY="170.0" prefHeight="27.0" prefWidth="182.0" styleClass="buttonThree" stylesheets="@styles.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></ChoiceBox>
             <Label layoutX="602.0" layoutY="153.0" text="Reason:">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font name="System Regular" size="12.0" />
                </font></Label>
             <RadioButton fx:id="nineAm" layoutX="417.0" layoutY="215.0" mnemonicParsing="false" onAction="#nineAm_Action" styleClass="radio" stylesheets="@styles.css" text="9:00 AM" wrapText="true">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font></RadioButton>
+                  <Font name="System Regular" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
             <RadioButton fx:id="tenAm" layoutX="567.0" layoutY="215.0" mnemonicParsing="false" onAction="#tenAm_Action" stylesheets="@styles.css" text="10:00 AM" wrapText="true">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font></RadioButton>
+                  <Font name="System Regular" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
             <RadioButton fx:id="elevenAm" layoutX="711.0" layoutY="215.0" mnemonicParsing="false" onAction="#elevenAm_Action" stylesheets="@styles.css" text="11:00 AM" wrapText="true">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font></RadioButton>
+                  <Font name="System Regular" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
             <RadioButton fx:id="onePM" layoutX="417.0" layoutY="239.0" mnemonicParsing="false" onAction="#onePM_Action" stylesheets="@styles.css" text="1:00 PM" wrapText="true">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font></RadioButton>
+                  <Font name="System Regular" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
             <RadioButton fx:id="twoPm" layoutX="567.0" layoutY="239.0" mnemonicParsing="false" onAction="#twoPm_Action" stylesheets="@styles.css" text="2:00 PM" wrapText="true">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font></RadioButton>
+                  <Font name="System Regular" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
             <RadioButton fx:id="threePm" layoutX="711.0" layoutY="238.0" mnemonicParsing="false" onAction="#threePm_Action" stylesheets="@styles.css" text="3:00 PM" wrapText="true">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
-               </font></RadioButton>
-            <Button fx:id="refreshBtn" layoutX="416.0" layoutY="348.0" mnemonicParsing="false" onAction="#refreshBtn_Click" prefHeight="27.0" prefWidth="368.0" styleClass="buttonTwo" stylesheets="@styles.css" text="Refresh" textFill="WHITE">
+                  <Font name="System Regular" size="12.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></RadioButton>
+            <Button fx:id="refreshBtn" layoutX="416.0" layoutY="348.0" mnemonicParsing="false" onAction="#refreshBtn_Click" onMouseEntered="#OnMouseEnterRefresh" onMouseExited="#OnMouseExitRefresh" prefHeight="27.0" prefWidth="368.0" styleClass="buttonTwo" stylesheets="@styles.css" text="Refresh" textFill="WHITE">
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
                <font>
-                  <Font name="Montserrat Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font></Button>
             <Pane layoutX="16.0" layoutY="99.0" prefHeight="58.0" prefWidth="368.0" styleClass="buttonFour" stylesheets="@styles.css">
                <children>
                   <Label fx:id="currentReservation" layoutX="13.0" layoutY="25.0" text="Current Reservation" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="8.0" text="Current Reservation:" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium Italic" size="12.0" />
+                        <Font name="System Italic" size="12.0" />
                      </font>
                   </Label>
                </children>
@@ -111,11 +141,11 @@
                <children>
                   <Label fx:id="reservationOne" layoutX="14.0" layoutY="20.0" text="Reservation 1" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                   <Label layoutX="14.0" layoutY="7.0" text="9:00 AM" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium" size="10.0" />
+                        <Font name="System Medium" size="10.0" />
                      </font>
                   </Label>
                </children>
@@ -128,11 +158,11 @@
                <children>
                   <Label fx:id="reservationTwo" layoutX="12.0" layoutY="19.0" text="Reservation 2" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                   <Label layoutX="12.0" layoutY="7.0" text="10:00AM" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium" size="10.0" />
+                        <Font name="System Medium" size="10.0" />
                      </font>
                   </Label>
                </children>
@@ -145,11 +175,11 @@
                <children>
                   <Label fx:id="reservationThree" layoutX="14.0" layoutY="19.0" text="Reservation 3" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                   <Label layoutX="14.0" layoutY="8.0" text="11:00AM" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium" size="10.0" />
+                        <Font name="System Medium" size="10.0" />
                      </font>
                   </Label>
                </children>
@@ -162,11 +192,11 @@
                <children>
                   <Label fx:id="reservationFour" layoutX="14.0" layoutY="18.0" text="Reservation 4" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                   <Label layoutX="15.0" layoutY="7.0" text="1:00PM" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium" size="10.0" />
+                        <Font name="System Medium" size="10.0" />
                      </font>
                   </Label>
                </children>
@@ -179,11 +209,11 @@
                <children>
                   <Label fx:id="reservationFive" layoutX="14.0" layoutY="19.0" text="Reservation 5" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                   <Label layoutX="14.0" layoutY="6.0" text="2:00PM" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium" size="10.0" />
+                        <Font name="System Medium" size="10.0" />
                      </font>
                   </Label>
                </children>
@@ -196,11 +226,11 @@
                <children>
                   <Label fx:id="reservationSix" layoutX="13.0" layoutY="17.0" text="Reservation 6" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Bold" size="12.0" />
+                        <Font name="System Bold" size="12.0" />
                      </font></Label>
                   <Label layoutX="14.0" layoutY="5.0" text="3:00PM" textFill="#3c56a6">
                      <font>
-                        <Font name="Montserrat Medium" size="10.0" />
+                        <Font name="System Medium" size="10.0" />
                      </font>
                   </Label>
                </children>
@@ -211,13 +241,13 @@
             </Pane>
             <TextArea fx:id="outputArea" layoutX="16.0" layoutY="163.0" prefHeight="219.0" prefWidth="368.0" stylesheets="@styles.css">
                <font>
-                  <Font name="Montserrat SemiBold" size="12.0" />
+                  <Font name="System SemiBold" size="12.0" />
                </font></TextArea>
             <Pane layoutX="416.0" layoutY="36.0" prefHeight="58.0" prefWidth="368.0" styleClass="buttonFour" stylesheets="@styles.css">
                <children>
-                  <Label layoutX="78.0" layoutY="11.0" prefHeight="37.0" prefWidth="228.0" text="Walk in clients">
+                  <Label layoutX="85.0" layoutY="8.0" prefHeight="43.0" prefWidth="198.0" text="Walk-in Clients" textAlignment="CENTER">
                      <font>
-                        <Font name="Montserrat Bold" size="29.0" />
+                        <Font name="System Regular" size="29.0" />
                      </font>
                      <textFill>
                         <LinearGradient endX="0.9924242135250207" endY="1.0">
@@ -242,58 +272,64 @@
                <children>
                   <Label fx:id="currentTime" layoutX="86.0" layoutY="49.0" text="9:00 AM" textFill="#644da0">
                      <font>
-                        <Font name="Montserrat Bold" size="46.0" />
+                        <Font name="System Bold" size="46.0" />
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="14.0" text="Current Time:" textFill="#644da0">
                      <font>
-                        <Font name="Montserrat Regular" size="21.0" />
+                        <Font name="System Regular" size="21.0" />
                      </font>
                   </Label>
                </children></Pane>
             <Label layoutX="418.0" layoutY="197.0" text="Time simulator">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font name="System Regular" size="12.0" />
                </font></Label>
-            <TextField fx:id="age" layoutX="524.0" layoutY="170.0" onAction="#age_Input" prefHeight="27.0" prefWidth="72.0" styleClass="buttonThree" stylesheets="@styles.css" />
-            <Label layoutX="524.0" layoutY="153.0" text="Age">
+            <TextField fx:id="age" layoutX="524.0" layoutY="170.0" onAction="#age_Input" prefHeight="27.0" prefWidth="72.0" styleClass="buttonThree" stylesheets="@styles.css">
+               <cursor>
+                  <Cursor fx:constant="TEXT" />
+               </cursor></TextField>
+            <Label layoutX="524.0" layoutY="153.0" text="Age:">
                <font>
-                  <Font name="Montserrat Regular" size="12.0" />
+                  <Font name="System Regular" size="12.0" />
                </font></Label>
-            <Button fx:id="print" layoutX="547.0" layoutY="389.0" mnemonicParsing="false" onAction="#print_Click" prefHeight="26.0" prefWidth="238.0" styleClass="buttonFour" stylesheets="@styles.css" text="Print to file" textFill="#3c56a6">
+            <Button fx:id="print" layoutX="547.0" layoutY="389.0" mnemonicParsing="false" onAction="#print_Click" onMouseEntered="#OnMouseEnterPrint" onMouseExited="#OnMouseExitPrint" prefHeight="26.0" prefWidth="238.0" styleClass="buttonFour" stylesheets="@styles.css" text="Print to file" textFill="#3c56a6">
                <font>
                   <Font name="System Bold" size="12.0" />
-               </font></Button>
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor></Button>
             <Pane layoutX="17.0" layoutY="36.0" prefHeight="58.0" prefWidth="368.0" style="-fx-background-radius: 15;" styleClass="buttonFive" stylesheets="@styles.css">
                <children>
                   <Label fx:id="emergencyLabel" layoutX="13.0" layoutY="25.0" text="Emergency queue" textFill="#cc2d3a">
                      <font>
-                        <Font name="Montserrat Bold" size="20.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
                   <Label layoutX="14.0" layoutY="6.0" text="Emergency:" textFill="#cc2d3a">
                      <font>
-                        <Font name="Montserrat Medium Italic" size="12.0" />
+                        <Font name="System Italic" size="12.0" />
                      </font>
                   </Label>
                </children>
             </Pane>
             <Label fx:id="warning" layoutX="417.0" layoutY="259.0" textFill="RED">
                <font>
-                  <Font name="Montserrat Light Italic" size="10.0" />
+                  <Font name="System Light Italic" size="10.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="418.0" layoutY="389.0" mnemonicParsing="false" onAction="#backButton_Click" prefHeight="26.0" prefWidth="119.0" styleClass="buttonFour" stylesheets="@styles.css" text="Log In Page" textFill="#3c56a6">
+            <Button fx:id="backButton" layoutX="418.0" layoutY="389.0" mnemonicParsing="false" onAction="#backButton_Click" onMouseEntered="#OnMouseEnterBack" onMouseExited="#OnMouseExitBack" prefHeight="26.0" prefWidth="119.0" styleClass="buttonFour" stylesheets="@styles.css" text="Log In Page" textFill="#3c56a6">
                <font>
-                  <Font name="Montserrat Bold" size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label layoutX="17.0" layoutY="385.0" text="Reservations" textFill="#3c56a6">
+            <Label layoutX="17.0" layoutY="382.0" text="Reservations:" textFill="#3c56a6">
                <font>
-                  <Font name="Montserrat Regular" size="16.0" />
+                  <Font name="System Bold" size="19.0" />
                </font>
             </Label>
          </children>
