@@ -3,3 +3,4 @@ Name: Reese, Last Name: Celis, Contact Number: 20, Date: 12345678901, Reason: To
 Name: Reese, Last Name: Celis, Contact Number: 20, Date: 12345678901, Reason: Tooth Extraction
 Name: Reese, Last Name: Celis, Contact Number: 20, Date: 12345678901, Reason: Tooth Extraction
 Name: Reese, Last Name: Celis, Contact Number: 20, Date: 12345678901, Reason: Tooth Extraction
+Name: Jomari, Last Name: Celis, Contact Number: 20, Date: 12345678901, Reason: General check up

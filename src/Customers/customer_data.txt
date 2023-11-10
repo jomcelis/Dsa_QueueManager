@@ -1,1 +1,2 @@
 Reese,Celis,12345678901,9:00 AM,Tooth Extraction
+Jomari,Celis,12345678901,10:00 AM,General check up
