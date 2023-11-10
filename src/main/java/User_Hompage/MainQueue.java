@@ -119,7 +119,7 @@
     
     
     
-        private final String[] choices ={"General check up","Tooth Extraction","Teeth whitening","X-Ray", "Consultation", "Braces", "Severe gum bleeding", "PWD", "Senior Citizen"};
+        private final String[] choices ={"General check up","Tooth Extraction","Teeth whitening","X-Ray", "Consultation", "Braces", "Severe gum bleeding","Post-Extraction", "Knocked-out tooth"};
     
         private PriorityQueue originalQueue;
         @FXML
@@ -204,11 +204,9 @@
                         case "Braces":
                             priority = 1;
                             break;
-                        case "PWD":
-                        case "Senior citizen":
-                            priority = 2;
-                            break;
                         case "Severe gum bleeding":
+                        case "Post-Extraction":
+                        case "Knocked-out tooth":
                             priority = 3;
                             break;
                         default:
@@ -217,7 +215,7 @@
                     }
     
                     // Create a formatted input string
-                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + ages + " , " + reason + " , " + priority + "Walk-in";
+                    String input = first + " , " + last + " , " + contact + " , " + date + " , " + ages + " , " + reason + " , " + priority+ "," + "Walk-in";
     
                     // Add the item to the priority queue with the determined priority
                     addData(first, last, contact, date, reason);
@@ -358,7 +356,7 @@
                         String reason = parts[5].trim();
                         if (priority.equals("3")) {
                             CheckEmergency = true;
-                            emergencyLabel.setText(firstName + " " + lastName + " " + reason);
+                            emergencyLabel.setText(firstName + " " + lastName + " , " + reason);
 
                             // You might want to remove the item from the priority queue if it is sent to the emergency label
                             // priorityQueue.remove();
@@ -508,26 +506,10 @@
                 error_message("Error reading the file: " + e.getMessage());
             }
         }
-    
-    
-    
-    
+
         void addData(String name, String lastName, String contactNumber, String date, String reason) {
             String filePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\PriorityQueue.txt";
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath, true))) {
-                writer.write(name + ",");
-                writer.write(lastName + ",");
-                writer.write(contactNumber + ",");
-                writer.write(date + ",");
-                writer.write(reason + System.getProperty("line.separator"));
-            } catch (IOException ex) {
-                ex.printStackTrace(); // Handle or log the exception properly
-            }
-        }
-
-        void addData2(String name, String lastName, String contactNumber, String date, String reason) {
-            String filePath2 = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\TempQueue.txt";
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath2, true))) {
                 writer.write(name + ",");
                 writer.write(lastName + ",");
                 writer.write(contactNumber + ",");
