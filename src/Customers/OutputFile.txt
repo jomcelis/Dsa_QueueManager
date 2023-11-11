@@ -1,0 +1,9 @@
+Reservations:
+Name: Jomari, Last Name: Celis, Age: 20, Contact Number: 12345678901, Time: 10:00 AM, Reason: General check up
+
+Priority Queue:
+Baste,Martzel,12345678901,10:00 AM,General check up
+Reese,celis,12345678901,10:00 AM,Teeth whitening
+Jap,Malazarte,12345678901,10:00 AM,Severe gum bleeding
+
+Date today: 2023-11-11
