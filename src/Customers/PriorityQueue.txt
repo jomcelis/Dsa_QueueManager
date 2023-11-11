@@ -1,8 +1,3 @@
-Reese,Celis,12345678901,10:00 AM,General check up
-Jomari,Celis,12345678901,10:00 AM,General check up
-Jomari,Celis,12345678901,10:00 AM,General check up
-Jomari,Celis,12345678901,10:00 AM,Tooth Extraction
-Jomari,Celis,12345678901,10:00 AM,Severe gum bleeding
-Jomari,Celis,12345678901,10:00 AM,General check up
-Baster,Martzel,09461234567,10:00 AM,Severe gum bleeding
-Jomari,Celis,12345678901,10:00 AM,Severe gum bleeding
+Baste,Martzel,12345678901,10:00 AM,General check up
+Reese,celis,12345678901,10:00 AM,Teeth whitening
+Jap,Malazarte,12345678901,10:00 AM,Severe gum bleeding

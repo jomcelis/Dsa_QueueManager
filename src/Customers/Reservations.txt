@@ -1,1 +1,1 @@
-Name: Jomari, Last Name: Celis, Contact Number: 20, Date: 12345678901, Reason: General check up
+Name: Jomari, Last Name: Celis, Age: 20, Contact Number: 12345678901, Time: 10:00 AM, Reason: General check up

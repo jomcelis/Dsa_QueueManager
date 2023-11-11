@@ -77,11 +77,12 @@ public class PriorityQueue<E extends Comparable<E>> {
         // Get the parent index of the current node.
         int parentIndex = (index - 1) / 2;
 
-        // While the current node has a higher priority than its parent, swap them.
-        while (index > 0 && queue.get(index).getPriority() > queue.get(parentIndex).getPriority()) {
+        // If the parent node has a lower priority than the current node, swap them.
+        if (parentIndex >= 0 && queue.get(parentIndex).getPriority() < queue.get(index).getPriority()) {
             swapNodes(index, parentIndex);
-            index = parentIndex;
-            parentIndex = (index - 1) / 2;
+
+            // Recursively heapify the parent node.
+            heapifyUp(parentIndex);
         }
     }
 

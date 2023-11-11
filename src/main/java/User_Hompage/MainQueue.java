@@ -199,10 +199,12 @@
                     switch (reason) {
                         case "General check up":
                         case "Teeth whitening":
-                        case "X-Ray":
                         case "Consultation":
                         case "Braces":
                             priority = 1;
+                            break;
+                        case "X-ray":
+                            priority = 2;
                             break;
                         case "Severe gum bleeding":
                         case "Post-Extraction":
@@ -325,7 +327,7 @@
                 updateReservationLabels();
                 updateLabelsFromFileData();
                 updateEmergencyLabel();
-                refreshOutput();
+                //refreshOutput();
                 JOptionPane.showMessageDialog(null, "Client removed from Queue", "Dequeue", JOptionPane.INFORMATION_MESSAGE);
             } catch (NoSuchElementException | FileNotFoundException e) {
                 error_message("Priority Queue is empty.");
@@ -589,37 +591,42 @@
             scaleTransition.setAutoReverse(true);
             scaleTransition.play();
             printToFile();
+
+            JOptionPane.showMessageDialog(null, "Details printed successfully!");
+
         }
-    
+
         private void printToFile() {
-            String reservationFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Reservations.txt";
-            String priorityQueueFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\PriorityQueue.txt";
-            String outputFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\OutputFile.txt";
 
-    
-            try {
-                File reservationFile = new File(reservationFilePath);
-                File priorityQueueFile = new File(priorityQueueFilePath);
+                String reservationFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\Reservations.txt";
+                String priorityQueueFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\PriorityQueue.txt";
+                String outputFilePath = "C:\\Users\\Lenovo\\Desktop\\BST\\Dsa_final\\src\\Customers\\OutputFile.txt";
 
-                if (!reservationFile.exists()) {
-                    reservationFile.createNewFile();
+
+                try {
+                    File reservationFile = new File(reservationFilePath);
+                    File priorityQueueFile = new File(priorityQueueFilePath);
+
+                    if (!reservationFile.exists()) {
+                        reservationFile.createNewFile();
+                    }
+                    if (!priorityQueueFile.exists()) {
+                        priorityQueueFile.createNewFile();
+                    }
+
+                    BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
+                    writer.write("Reservations:\n");
+                    writeDataFromFile(reservationFilePath, writer);
+                    writer.write("\nPriority Queue:\n");
+                    writeDataFromFile(priorityQueueFilePath, writer);
+                    writer.write("\nDate today: " + LocalDate.now() + "\n");
+
+                    writer.close();
+                } catch (IOException ex) {
+                    ex.printStackTrace(); // Handle or log the exception properly
                 }
-                if (!priorityQueueFile.exists()) {
-                    priorityQueueFile.createNewFile();
-                }
-
-                BufferedWriter writer = new BufferedWriter(new FileWriter(outputFilePath));
-                writer.write("Reservations:\n");
-                writeDataFromFile(reservationFilePath, writer);
-                writer.write("\nPriority Queue:\n");
-                writeDataFromFile(priorityQueueFilePath, writer);
-                writer.write("\nDate today: " + LocalDate.now() + "\n");
-
-                writer.close();
-            } catch (IOException ex) {
-                ex.printStackTrace(); // Handle or log the exception properly
-            }
         }
+
 
         private void writeDataFromFile(String filePath, BufferedWriter writer) {
             try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
